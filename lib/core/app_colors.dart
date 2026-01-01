@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 class AppColors {
   /* ==================== Primary Colors ==================== */
   /// Primary brand color (Orange) - Extract exact value from Figma
-  static const Color primaryColor = Color(0xFFFF7931);
-  static const Color primaryDark = Color(0xFFE6681F);
+  static const Color primaryColor = Color(0xFF29A6E9);
+  static const Color primaryDark = Color.fromARGB(255, 0, 91, 139);
   static const Color primaryLight = Color(0xFFFF9D6B);
   static const Color primaryContainer = Color(0xFFFFE8DC);
+  static const Color topLinear = Color(0xFF2D9CFC);
+  static const Color bottomLinear = Color(0xFF27AD65);
 
   /* ==================== Background Colors ==================== */
-  static const Color bgColor = Color(0xFFF0F0F0);
+  static const Color bgColor = Color(0xFF5F8FF);
   static const Color bgSecondary = Color(0xFFFFFFFF);
   static const Color bgTertiary = Color(0xFFF8F8F8);
   static const Color surface = Color(0xFFFFFFFF);
