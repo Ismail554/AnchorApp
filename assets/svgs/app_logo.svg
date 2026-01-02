@@ -1,10 +1,10 @@
-<svg width="172" height="172" viewBox="0 0 172 172" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="160" height="160" viewBox="0 0 172 172" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g filter="url(#filter0_d_366_298)">
 <path d="M38 37C38 23.7452 48.7452 13 62 13H110C123.255 13 134 23.7452 134 37V85C134 98.2548 123.255 109 110 109H62C48.7452 109 38 98.2548 38 85V37Z" fill="white" shape-rendering="crispEdges"/>
 <rect x="57.5156" y="33" width="56" height="56" fill="url(#pattern0_366_298)"/>
 </g>
 <defs>
-<filter id="filter0_d_366_298" x="0" y="0" width="172" height="172" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_366_298" x="0" y="0" width="160" height="160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feMorphology radius="12" operator="erode" in="SourceAlpha" result="effect1_dropShadow_366_298"/>
