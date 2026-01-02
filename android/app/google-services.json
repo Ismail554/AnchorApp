@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "581080373754",
+    "project_id": "geography-geyser-app-cc7f8",
+    "storage_bucket": "geography-geyser-app-cc7f8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581080373754:android:eb4a24d017b60820166c43",
+        "android_client_info": {
+          "package_name": "com.example.wynante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581080373754-o7a3v7d346j434tgaiirtdt0s79sd7sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX8ka9gfplfmzdSXFD_ixh3ZjXL2ODY0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581080373754-o7a3v7d346j434tgaiirtdt0s79sd7sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
