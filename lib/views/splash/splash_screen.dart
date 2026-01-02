@@ -9,6 +9,7 @@ import 'package:wynante/core/app_strings.dart';
 import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/views/home/homepage_screen.dart';
+import 'package:wynante/views/onboarding/onboarding_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,13 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Check authentication status after splash delay
-    Timer(const Duration(seconds: 3), () {
-      // _checkAuthAndNavigate();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (cotext) => const HomepageScreen()),
-      );
+    _navigateToOnboarding();
+  }
+
+  void _navigateToOnboarding() {
+    Timer(const Duration(seconds: 2), () {
+      if (mounted) {
+        OnboardingController.navigateToOnboarding(context);
+      }
     });
   }
 

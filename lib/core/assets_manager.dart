@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 const String imagePath = "assets/images";
 const String iconPath = "assets/icons";
 const String jsonPath = "assets/json";
@@ -23,6 +21,12 @@ class JsonAssets {}
 
 class SvgAssets {
   // ✅ General SVG Files
-
   static const String logo = "$svgPath/app_logo.svg";
+  
+  // Navigation Icons
+  static const String homeNav = "$svgPath/home_nav.svg";
+  static const String matchesNav = "$svgPath/matches_nav.svg";
+  static const String messageNav = "$svgPath/message_nav.svg";
+  static const String communityNav = "$svgPath/community_nav.svg";
+  static const String profileNav = "$svgPath/profile_nav.svg";
 }

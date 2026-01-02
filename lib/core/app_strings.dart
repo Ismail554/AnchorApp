@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-/// App Strings for ScoreLivePro
+/// App Strings for Anchor Up / Wynante
 /// Supports 6 languages: English, Spanish, French, Arabic, Portuguese, German
 ///
 /// Usage:
@@ -12,6 +10,18 @@ class AppStrings {
   static const String appName = "Anchor App";
   static const String anchorUp = "AnchorUp";
   static const String quote = "Building Meaningful Connections";
+  static const String login = "Login";
+  // ==================== Onboarding ====================//
+  static const String onboardingDescription =
+      "Chat with the smartest AI Future Experience power of AI with us";
+  static const String getStarted = "Get Started";
+  static const String next = "Next";
+  // =================== nav ========================== //
+  static const String home = "Home";
+  static const String matches = "Matches";
+  static const String community = "Community";
+  static const String message = "Message";
+  static const String profile = "Profile";
 
   // ==================== Time & Date ====================
   static const String now = "Now";
