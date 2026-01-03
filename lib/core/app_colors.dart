@@ -12,6 +12,7 @@ class AppColors {
   static const Color primaryContainer = Color(0xFFFFE8DC);
   static const Color topLinear = Color(0xFF2D9CFC);
   static const Color bottomLinear = Color(0xFF27AD65);
+  static const Color secondaryColor = Color(0xFFBBBFD7);
 
   /* ==================== Background Colors ==================== */
   static const Color bgColor = Color(0xFFF0F0F0);

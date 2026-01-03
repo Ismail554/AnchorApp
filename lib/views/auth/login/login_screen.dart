@@ -8,6 +8,7 @@ import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
+import 'package:wynante/views/auth/sign_up/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -138,12 +139,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     // TODO: Implement login logic
                   },
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                    foregroundColor: AppColors.white,
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
-                  ),
                   child: Text(
                     AppStrings.login,
                     style: FontManager.buttonText(
@@ -167,7 +162,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // TODO: Navigate to register screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupScreen()),
+                      );
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.only(left: 4.w),
@@ -237,51 +235,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Google Button
                   Expanded(
                     child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: AppColors.grey, width: 1),
+                      ),
                       onPressed: () {
                         // TODO: Implement Google login
                       },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        foregroundColor: AppColors.textPrimary,
-                        side: BorderSide(
-                          color: AppColors.grey.withOpacity(0.3),
-                          width: 1,
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppPadding.c12,
-                        ),
-                      ),
+
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Google Logo (G icon) - Simplified
-                          Container(
-                            width: 20.w,
-                            height: 20.h,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  const Color(0xFF4285F4), // Blue
-                                  const Color(0xFF34A853), // Green
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Center(
-                              child: Text(
-                                'G',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          AppSpacing.w8,
                           Text(
                             AppStrings.google,
                             style: FontManager.bodyMedium(
@@ -297,21 +260,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Apple Button
                   Expanded(
                     child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: AppColors.grey, width: 1),
+                      ),
                       onPressed: () {
                         // TODO: Implement Apple login
                       },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        foregroundColor: AppColors.textPrimary,
-                        side: BorderSide(
-                          color: AppColors.grey.withOpacity(0.3),
-                          width: 1,
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppPadding.c12,
-                        ),
-                      ),
+
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

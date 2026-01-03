@@ -23,13 +23,13 @@ class MyApp extends StatelessWidget {
               seedColor: AppColors.primaryColor,
               surface: AppColors.white, // Set surface to match your bgColor
             ),
-          
+
             filledButtonTheme: FilledButtonThemeData(
               style: FilledButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
                 foregroundColor: AppColors.white,
                 padding: EdgeInsets.symmetric(vertical: 16.h),
-                shape: RoundedRectangleBorder(borderRadius: AppPadding.c4),
+                shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
                 elevation: 0,
               ),
             ),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 foregroundColor: AppColors.primaryColor,
                 side: BorderSide(color: AppColors.primaryColor, width: 1.5),
                 padding: EdgeInsets.symmetric(vertical: 16.h),
-                shape: RoundedRectangleBorder(borderRadius: AppPadding.c4),
+                shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
               ),
             ),
             primarySwatch: Colors.blue,

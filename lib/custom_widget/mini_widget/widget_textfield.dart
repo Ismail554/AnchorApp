@@ -19,7 +19,7 @@ class WidgetTextfield extends StatefulWidget {
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.validator,
-    this.elevation = 4.0, // 2. Default elevation value
+    this.elevation = 8.0, // 2. Default elevation value
   });
 
   @override
@@ -41,7 +41,7 @@ class _WidgetTextfieldState extends State<WidgetTextfield> {
     return Material(
       elevation: widget.elevation,
       shadowColor: Colors.black.withOpacity(
-        0.2,
+        0.4,
       ), // Softens the elevation shadow
       borderRadius: BorderRadius.circular(8.r),
       color: AppColors.white,
@@ -54,7 +54,11 @@ class _WidgetTextfieldState extends State<WidgetTextfield> {
           hintText: widget.hintText,
           hintStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
           prefixIcon: widget.prefixIcon != null
-              ? Icon(widget.prefixIcon, color: AppColors.grey, size: 20.sp)
+              ? Icon(
+                  widget.prefixIcon,
+                  color: AppColors.secondaryColor,
+                  size: 20.sp,
+                )
               : null,
           border: InputBorder.none, // Keeps the clean look from your image
           contentPadding: EdgeInsets.symmetric(
