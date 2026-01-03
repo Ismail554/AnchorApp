@@ -14,7 +14,7 @@ class AppColors {
   static const Color bottomLinear = Color(0xFF27AD65);
 
   /* ==================== Background Colors ==================== */
-  static const Color bgColor = Color(0xFF5F8FF);
+  static const Color bgColor = Color(0xFFF0F0F0);
   static const Color bgSecondary = Color(0xFFFFFFFF);
   static const Color bgTertiary = Color(0xFFF8F8F8);
   static const Color surface = Color(0xFFFFFFFF);

@@ -10,9 +10,7 @@ class OnboardingController {
   static void navigateToOnboarding(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (_) => const OnboardingPageView(),
-      ),
+      MaterialPageRoute(builder: (_) => const OnboardingPageView()),
     );
   }
 
@@ -20,9 +18,7 @@ class OnboardingController {
   static void skipOnboarding(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (_) => const MainNavigationScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
     );
   }
 
@@ -30,9 +26,7 @@ class OnboardingController {
   static void completeOnboarding(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (_) => const MainNavigationScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
     );
   }
 }
@@ -81,18 +75,9 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
         });
       },
       children: [
-        OnboadingScreen1(
-          onNext: _nextPage,
-          onSkip: _skipOnboarding,
-        ),
-        OnboadingScreen2(
-          onNext: _nextPage,
-          onSkip: _skipOnboarding,
-        ),
-        OnboadingScreen3(
-          onNext: _nextPage,
-          onSkip: _skipOnboarding,
-        ),
+        OnboadingScreen1(onNext: _nextPage, onSkip: _skipOnboarding),
+        OnboadingScreen2(onNext: _nextPage, onSkip: _skipOnboarding),
+        OnboadingScreen3(onNext: _nextPage, onSkip: _skipOnboarding),
       ],
     );
   }

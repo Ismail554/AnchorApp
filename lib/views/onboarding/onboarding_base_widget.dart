@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:wynante/core/app_colors.dart';
-import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/app_strings.dart';
-import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
+import 'package:wynante/views/auth/login/login_screen.dart';
 
 /// Base widget for onboarding screens
 /// Provides common layout and styling matching Figma design
@@ -45,7 +44,7 @@ class OnboardingBaseWidget extends StatelessWidget {
         child: Column(
           children: [
             // Header with Logo + Anchor Up text and Skip button
-            _buildHeader(),
+            _buildHeader(context),
 
             // Main content
             Expanded(
@@ -68,7 +67,7 @@ class OnboardingBaseWidget extends StatelessWidget {
                     _buildDescription(),
                     AppSpacing.h12,
                     // Navigation Buttons
-                    _buildNavigationButtons(),
+                    _buildNavigationButtons(context),
                     AppSpacing.h24,
                   ],
                 ),
@@ -81,31 +80,24 @@ class OnboardingBaseWidget extends StatelessWidget {
   }
 
   /// Header with Logo + Anchor Up on left, Skip on right
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Logo + Anchor Up text
-          Row(
-            children: [
-              // App Logo
-              Image.asset(IconAssets.appIcon, width: 32.w, height: 32.h),
-              AppSpacing.w8,
-              // Anchor Up text
-              Text(
-                AppStrings.anchorUp,
-                style: FontManager.heading3(
-                  fontSize: 18,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ],
-          ),
-          // Skip Button
+          LinearLogo(),
+          // Skip Button - Navigate to Login Screen
           TextButton(
-            onPressed: onSkip,
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+              );
+            },
             child: Text(
               'Skip',
               style: FontManager.bodyMedium(
@@ -191,49 +183,38 @@ class OnboardingBaseWidget extends StatelessWidget {
   }
 
   /// Navigation buttons: Get Started (blue) and Login (white with blue border)
-  Widget _buildNavigationButtons() {
+  Widget _buildNavigationButtons(BuildContext context) {
     return Column(
       children: [
         // Get Started Button (Blue filled)
         SizedBox(
           width: double.infinity,
-          child: ElevatedButton(
+          child: FilledButton(
             onPressed: onNext,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              foregroundColor: AppColors.white,
-              padding: EdgeInsets.symmetric(vertical: 16.h),
-              shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
-              elevation: 0,
-            ),
             child: Text(
               buttonText,
-              style: FontManager.buttonText(
-                fontSize: 16,
-                color: AppColors.white,
-              ),
+              style: FontManager.buttonText(color: AppColors.white),
             ),
           ),
         ),
         AppSpacing.h12,
         // Login Button (White with blue border)
         SizedBox(
-          width: double.infinity,
+          width: double.maxFinite,
           child: OutlinedButton(
-            onPressed: onLogin ?? () {},
-            style: OutlinedButton.styleFrom(
-              backgroundColor: AppColors.white,
-              foregroundColor: AppColors.primaryColor,
-              side: BorderSide(color: AppColors.primaryColor, width: 1.5),
-              padding: EdgeInsets.symmetric(vertical: 16.h),
-              shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
-            ),
+            onPressed:
+                onLogin ??
+                () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
             child: Text(
               AppStrings.login,
-              style: FontManager.buttonText(
-                fontSize: 16,
-                color: AppColors.primaryColor,
-              ),
+              style: FontManager.buttonText(color: AppColors.primaryColor),
             ),
           ),
         ),

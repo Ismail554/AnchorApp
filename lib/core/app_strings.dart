@@ -11,6 +11,20 @@ class AppStrings {
   static const String anchorUp = "AnchorUp";
   static const String quote = "Building Meaningful Connections";
   static const String login = "Login";
+  
+  // ==================== Authentication ====================
+  static const String email = "Email";
+  static const String emailHint = "user@mail.com";
+  static const String password = "Password";
+  static const String passwordHint = "Password";
+  static const String rememberMe = "Remember me";
+  static const String forgotPassword = "Forget Password?";
+  static const String dontHaveAccount = "Don't have account?";
+  static const String register = "Register";
+  static const String orLoginWith = "Or login with";
+  static const String google = "Google";
+  static const String apple = "Apple";
+  
   // ==================== Onboarding ====================//
   static const String onboardingDescription =
       "Chat with the smartest AI Future Experience power of AI with us";

@@ -36,48 +36,42 @@ class FontManager {
   static TextStyle displayLarge({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: (fontSize ?? 48).sp,
-        fontWeight: w800,
-        color: color,
-        letterSpacing: -0.5,
-        height: 1.2,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: (fontSize ?? 48).sp,
+    fontWeight: w800,
+    color: color,
+    letterSpacing: -0.5,
+    height: 1.2,
+  );
 
   /// Display Medium - For section titles
   static TextStyle displayMedium({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: (fontSize ?? 36).sp,
-        fontWeight: w800,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.2,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: (fontSize ?? 36).sp,
+    fontWeight: w800,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.2,
+  );
 
   /// Display Small - For large headings
   static TextStyle displaySmall({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: (fontSize ?? 28).sp,
-        fontWeight: w700,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.3,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: (fontSize ?? 28).sp,
+    fontWeight: w700,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.3,
+  );
 
   // ==================== Heading Text Styles ====================
 
   /// Heading 1 - Main page titles
-  static TextStyle heading1({
-    Color color = mainTextColor,
-    double? fontSize,
-  }) =>
+  static TextStyle heading1({Color color = mainTextColor, double? fontSize}) =>
       GoogleFonts.poppins(
         fontSize: (fontSize ?? 24).sp,
         fontWeight: w700,
@@ -87,10 +81,7 @@ class FontManager {
       );
 
   /// Heading 2 - Section headings
-  static TextStyle heading2({
-    Color color = mainTextColor,
-    double? fontSize,
-  }) =>
+  static TextStyle heading2({Color color = mainTextColor, double? fontSize}) =>
       GoogleFonts.poppins(
         fontSize: (fontSize ?? 22).sp,
         fontWeight: w700,
@@ -103,35 +94,43 @@ class FontManager {
   static TextStyle heading3({
     Color color = mainTextColor,
     double fontSize = 20,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: fontSize.sp,
-        fontWeight: w600,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.4,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: fontSize.sp,
+    fontWeight: w600,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.4,
+  );
 
   /// Heading 4 - Small headings
   static TextStyle heading4({
     Color color = mainTextColor,
     double fontSize = 16,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: fontSize,
-        fontWeight: w500,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.4,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: fontSize,
+    fontWeight: w500,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.4,
+  );
+
+  /// Heading 4 - Small headings
+  static TextStyle normalText({
+    Color color = mainTextColor,
+    double letterSpacing = 1.2,
+    double fontSize = 16,
+  }) => GoogleFonts.roboto(
+    fontSize: fontSize.sp,
+    fontWeight: w500,
+    color: color,
+    letterSpacing: letterSpacing,
+    height: 1.4,
+  );
 
   // ==================== Body Text Styles ====================
 
   /// Body Large - For important body text
-  static TextStyle bodyLarge({
-    Color color = mainTextColor,
-    double? fontSize,
-  }) =>
+  static TextStyle bodyLarge({Color color = mainTextColor, double? fontSize}) =>
       GoogleFonts.inter(
         fontSize: (fontSize ?? 18).sp,
         fontWeight: w400,
@@ -144,20 +143,16 @@ class FontManager {
   static TextStyle bodyMedium({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 16).sp,
-        fontWeight: w600,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.5,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 16).sp,
+    fontWeight: w600,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.5,
+  );
 
   /// Body Small - Secondary body text
-  static TextStyle bodySmall({
-    Color color = subtitleColor,
-    double? fontSize,
-  }) =>
+  static TextStyle bodySmall({Color color = subtitleColor, double? fontSize}) =>
       GoogleFonts.inter(
         fontSize: (fontSize ?? 14).sp,
         fontWeight: w400,
@@ -172,40 +167,37 @@ class FontManager {
   static TextStyle labelLarge({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 16).sp,
-        fontWeight: w600,
-        color: color,
-        letterSpacing: 0.1,
-        height: 1.4,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 16).sp,
+    fontWeight: w600,
+    color: color,
+    letterSpacing: 0.1,
+    height: 1.4,
+  );
 
   /// Label Medium - Standard labels
   static TextStyle labelMedium({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 14).sp,
-        fontWeight: w600,
-        color: color,
-        letterSpacing: 0.1,
-        height: 1.4,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 14).sp,
+    fontWeight: w600,
+    color: color,
+    letterSpacing: 0.1,
+    height: 1.4,
+  );
 
   /// Label Small - Small labels
   static TextStyle labelSmall({
     Color color = subtitleColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 12).sp,
-        fontWeight: w500,
-        color: color,
-        letterSpacing: 0.1,
-        height: 1.3,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 12).sp,
+    fontWeight: w500,
+    color: color,
+    letterSpacing: 0.1,
+    height: 1.3,
+  );
 
   // ==================== Legacy Text Styles (Keep for compatibility) ====================
 
@@ -213,62 +205,46 @@ class FontManager {
   static TextStyle titleText({
     Color color = mainTextColor,
     double fontSize = 22,
-  }) =>
-      heading2(color: color, fontSize: fontSize);
+  }) => heading2(color: color, fontSize: fontSize);
 
   /// Big Title Text - Legacy support
   static TextStyle bigTitleText({
     Color color = Colors.white,
     double? fontSize,
-  }) =>
-      displayMedium(color: color, fontSize: fontSize);
+  }) => displayMedium(color: color, fontSize: fontSize);
 
   /// General Text - Legacy support
   static TextStyle generalText({
-    double fontSize = 14,
+    double fontSize = 16,
     Color color = hintTextColor,
-  }) =>
-      bodyLarge(color: color, fontSize: fontSize);
+  }) => bodyLarge(color: color, fontSize: fontSize);
 
   /// Hint Text - Legacy support
   static TextStyle hintText({
     double fontSize = 16,
     Color color = hintTextColor,
-  }) =>
-      bodyMedium(color: color, fontSize: fontSize);
+  }) => bodyMedium(color: color, fontSize: fontSize);
 
   /// Subtitle Text - Legacy support
   static TextStyle subtitleText({
     double fontSize = 16,
     Color color = subtitleColor,
     double height = 1.4,
-  }) =>
-      bodyMedium(
-        color: color,
-        fontSize: fontSize,
-      );
+  }) => bodyMedium(color: color, fontSize: fontSize);
 
   /// Sub Subtitle Text - Legacy support
   static TextStyle subSubtitleText({
     double fontSize = 14,
     Color color = subSubtitleColor,
     double height = 1.4,
-  }) =>
-      bodySmall(
-        color: color,
-        fontSize: fontSize,
-      );
+  }) => bodySmall(color: color, fontSize: fontSize);
 
   /// Button Text - Legacy support
   static TextStyle buttonText({
-    double fontSize = 14,
+    double fontSize = 16,
     Color color = Colors.white,
     double height = 1,
-  }) =>
-      labelLarge(
-        color: color,
-        fontSize: fontSize,
-      );
+  }) => labelLarge(color: color, fontSize: fontSize);
 
   // ==================== Sports Specific Text Styles ====================
 
@@ -276,20 +252,16 @@ class FontManager {
   static TextStyle matchScore({
     Color color = mainTextColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.poppins(
-        fontSize: (fontSize ?? 32).sp,
-        fontWeight: w800,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.0,
-      );
+  }) => GoogleFonts.poppins(
+    fontSize: (fontSize ?? 32).sp,
+    fontWeight: w800,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.0,
+  );
 
   /// Team Name - For team names in matches
-  static TextStyle teamName({
-    Color color = mainTextColor,
-    double? fontSize,
-  }) =>
+  static TextStyle teamName({Color color = mainTextColor, double? fontSize}) =>
       GoogleFonts.poppins(
         fontSize: (fontSize ?? 16).sp,
         fontWeight: w600,
@@ -302,33 +274,28 @@ class FontManager {
   static TextStyle leagueName({
     Color color = subtitleColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 14).sp,
-        fontWeight: w500,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.3,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 14).sp,
+    fontWeight: w500,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.3,
+  );
 
   /// Match Status - For LIVE, FT, HT, etc.
   static TextStyle matchStatus({
     Color color = AppColors.liveMatch,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 12).sp,
-        fontWeight: w700,
-        color: color,
-        letterSpacing: 0.5,
-        height: 1.2,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 12).sp,
+    fontWeight: w700,
+    color: color,
+    letterSpacing: 0.5,
+    height: 1.2,
+  );
 
   /// News Title - For news article titles
-  static TextStyle newsTitle({
-    Color color = mainTextColor,
-    double? fontSize,
-  }) =>
+  static TextStyle newsTitle({Color color = mainTextColor, double? fontSize}) =>
       GoogleFonts.poppins(
         fontSize: (fontSize ?? 18).sp,
         fontWeight: w600,
@@ -341,12 +308,11 @@ class FontManager {
   static TextStyle newsExcerpt({
     Color color = subtitleColor,
     double? fontSize,
-  }) =>
-      GoogleFonts.inter(
-        fontSize: (fontSize ?? 14).sp,
-        fontWeight: w400,
-        color: color,
-        letterSpacing: 0.0,
-        height: 1.5,
-      );
+  }) => GoogleFonts.inter(
+    fontSize: (fontSize ?? 14).sp,
+    fontWeight: w400,
+    color: color,
+    letterSpacing: 0.0,
+    height: 1.5,
+  );
 }
