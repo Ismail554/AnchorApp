@@ -8,6 +8,7 @@ import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
+import 'package:wynante/views/auth/forgot_pass_screen.dart';
 import 'package:wynante/views/auth/sign_up/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -114,7 +115,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Forgot Password Link
                   TextButton(
                     onPressed: () {
-                      // TODO: Navigate to forgot password screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPassScreen(),
+                        ),
+                      );
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
