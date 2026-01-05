@@ -10,6 +10,7 @@ import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
 import 'package:wynante/views/auth/forgot_pass_screen.dart';
 import 'package:wynante/views/auth/sign_up/signup_screen.dart';
+import 'package:wynante/views/auth/profile_setup/profile_setup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -144,6 +145,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: FilledButton(
                   onPressed: () {
                     // TODO: Implement login logic
+                    // Navigate to Profile Setup for now
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ProfileSetupScreen(),
+                      ),
+                    );
                   },
                   child: Text(
                     AppStrings.login,

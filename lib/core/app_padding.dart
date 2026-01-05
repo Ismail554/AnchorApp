@@ -2,7 +2,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppPadding {
-   static BorderRadius get c4 => BorderRadius.circular(4.r);
+  // Raw values (responsive)
+  static double get p4 => 4.r;
+  static double get p8 => 8.r;
+  static double get p12 => 12.r;
+  static double get p16 => 16.r;
+  static double get p20 => 20.r;
+  static double get p24 => 24.r;
+  static double get p32 => 32.r;
+  static double get p40 => 40.r;
+  static double get p48 => 48.r;
+
+  static BorderRadius get c4 => BorderRadius.circular(4.r);
   static BorderRadius get c8 => BorderRadius.circular(8.r);
   static BorderRadius get c12 => BorderRadius.circular(12.r);
   static BorderRadius get c16 => BorderRadius.circular(16.r);
@@ -45,27 +56,31 @@ class AppPadding {
   static EdgeInsets get v48 => EdgeInsets.symmetric(vertical: 48.r);
 
   // Mixed padding (common combinations - responsive)
-  static EdgeInsets get h16v8 => EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r);
-  static EdgeInsets get h16v12 => EdgeInsets.symmetric(horizontal: 16.r, vertical: 12.r);
-  static EdgeInsets get h24v12 => EdgeInsets.symmetric(horizontal: 24.r, vertical: 12.r);
-  static EdgeInsets get h24v16 => EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.r);
-  
+  static EdgeInsets get h16v8 =>
+      EdgeInsets.symmetric(horizontal: 16.r, vertical: 8.r);
+  static EdgeInsets get h16v12 =>
+      EdgeInsets.symmetric(horizontal: 16.r, vertical: 12.r);
+  static EdgeInsets get h24v12 =>
+      EdgeInsets.symmetric(horizontal: 24.r, vertical: 12.r);
+  static EdgeInsets get h24v16 =>
+      EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.r);
+
   // Only specific sides (responsive)
   static EdgeInsets get top4 => EdgeInsets.only(top: 4.r);
   static EdgeInsets get top8 => EdgeInsets.only(top: 8.r);
   static EdgeInsets get top16 => EdgeInsets.only(top: 16.r);
   static EdgeInsets get top24 => EdgeInsets.only(top: 24.r);
-  
+
   static EdgeInsets get bottom4 => EdgeInsets.only(bottom: 4.r);
   static EdgeInsets get bottom8 => EdgeInsets.only(bottom: 8.r);
   static EdgeInsets get bottom16 => EdgeInsets.only(bottom: 16.r);
   static EdgeInsets get bottom24 => EdgeInsets.only(bottom: 24.r);
-  
+
   static EdgeInsets get left4 => EdgeInsets.only(left: 4.r);
   static EdgeInsets get left8 => EdgeInsets.only(left: 8.r);
   static EdgeInsets get left16 => EdgeInsets.only(left: 16.r);
   static EdgeInsets get left24 => EdgeInsets.only(left: 24.r);
-  
+
   static EdgeInsets get right4 => EdgeInsets.only(right: 4.r);
   static EdgeInsets get right8 => EdgeInsets.only(right: 8.r);
   static EdgeInsets get right16 => EdgeInsets.only(right: 16.r);

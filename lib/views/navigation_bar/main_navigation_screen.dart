@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wynante/views/home/homepage_screen.dart';
 import 'package:wynante/views/navigation_bar/custom_bottom_nav_bar.dart';
 
 /// Main Navigation Screen with Bottom Navigation Bar
@@ -6,10 +7,7 @@ import 'package:wynante/views/navigation_bar/custom_bottom_nav_bar.dart';
 class MainNavigationScreen extends StatefulWidget {
   final int? initialIndex;
 
-  const MainNavigationScreen({
-    super.key,
-    this.initialIndex,
-  });
+  const MainNavigationScreen({super.key, this.initialIndex});
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
@@ -27,12 +25,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   // List of screens - Add your screen widgets here as they're implemented
   final List<Widget> _screens = [
     // TODO: Implement these screens
-    // const HomeScreen(),
+    const HomepageScreen(),
     // const MatchesScreen(),
     // const MessageScreen(),
     // const CommunityScreen(),
     // const ProfileScreen(),
-    
+
     // Placeholder screens for now
     const _PlaceholderScreen(title: 'Home'),
     const _PlaceholderScreen(title: 'Matches'),
@@ -50,10 +48,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
@@ -74,11 +69,7 @@ class _PlaceholderScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.construction,
-            size: 64,
-            color: Colors.grey,
-          ),
+          Icon(Icons.construction, size: 64, color: Colors.grey),
           const SizedBox(height: 16),
           Text(
             '$title Screen',
@@ -91,10 +82,7 @@ class _PlaceholderScreen extends StatelessWidget {
           const SizedBox(height: 8),
           const Text(
             'Coming soon...',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
         ],
       ),

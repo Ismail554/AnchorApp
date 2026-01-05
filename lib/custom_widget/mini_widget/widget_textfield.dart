@@ -6,6 +6,7 @@ class WidgetTextfield extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;
   final IconData? prefixIcon;
+  final IconData? suffixIcon; // Added suffixIcon
   final bool isPassword;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
@@ -19,7 +20,8 @@ class WidgetTextfield extends StatefulWidget {
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.validator,
-    this.elevation = 8.0, // 2. Default elevation value
+    this.elevation = 8.0,
+    this.suffixIcon, // Added suffixIcon
   });
 
   @override
@@ -80,7 +82,13 @@ class _WidgetTextfieldState extends State<WidgetTextfield> {
                     });
                   },
                 )
-              : null,
+              : (widget.suffixIcon != null
+                    ? Icon(
+                        widget.suffixIcon,
+                        color: AppColors.grey,
+                        size: 20.sp,
+                      )
+                    : null),
         ),
       ),
     );
