@@ -15,6 +15,14 @@ class IconAssets {
   static const String anchorApp = "$iconPath/anchor_app.png";
   static const String loginIcon = "$iconPath/login_top.png";
   static const String sighupIcon = "$iconPath/signup_top.png";
+
+  // ======= Connection Status Icons =======
+  static const String chat = "$iconPath/chat.png";
+  static const String high = "$iconPath/high.png";
+  static const String medium = "$iconPath/medium.png"; 
+  static const String low = "$iconPath/low.png";
+  static const String invite = "$iconPath/invite.png";  
+
 }
 
 class JsonAssets {}

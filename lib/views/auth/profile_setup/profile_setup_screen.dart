@@ -11,6 +11,8 @@ import 'package:wynante/views/auth/profile_setup/steps/photos_step.dart';
 import 'package:wynante/views/auth/profile_setup/steps/summary_step.dart';
 import 'package:wynante/views/auth/profile_setup/steps/user_category_step.dart';
 
+import 'package:wynante/views/home/homepage_screen.dart';
+
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
 
@@ -21,7 +23,7 @@ class ProfileSetupScreen extends StatefulWidget {
 class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final PageController _pageController = PageController();
   final ImagePicker _picker = ImagePicker();
-  
+
   int _currentIndex = 0;
   final int _totalSteps = 5;
 
@@ -29,7 +31,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final TextEditingController _birthdayController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
-  
+
   String _selectedGender = '';
   final List<String> _selectedConnections = [];
   String _selectedCategory = '';
@@ -68,7 +70,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   }
 
   void _handleComplete() {
-    debugPrint("Profile setup completed");
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const HomepageScreen()),
+      (route) => false,
+    );
   }
 
   Future<void> _pickImage() async {
@@ -111,9 +116,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error picking image: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error picking image: $e')));
       }
     }
   }
@@ -150,116 +155,128 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     });
   }
 
-  double get _progress => (_currentIndex + 1) / _totalSteps;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      appBar: AppBar(
+    // Calculate progress (1-based index / total)
+    // Actually typically progress is 0.2, 0.4, etc.
+    // _currentIndex 0 => 1/5 => 0.2
+    double progress = (_currentIndex + 1) / _totalSteps;
+
+    return PopScope(
+      canPop: _currentIndex == 0,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _previousPage();
+      },
+      child: Scaffold(
         backgroundColor: AppColors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20.sp,
-            color: AppColors.textPrimary,
-          ),
-          onPressed: _previousPage,
-        ),
-        title: ClipRRect(
-          borderRadius: BorderRadius.circular(2.r),
-          child: LinearProgressIndicator(
-            value: _progress,
-            backgroundColor: AppColors.greyE8,
-            valueColor: const AlwaysStoppedAnimation<Color>(
-              AppColors.primaryColor,
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              size: 20.sp,
+              color: AppColors.textPrimary,
             ),
-            minHeight: 4.h,
+            onPressed: _previousPage,
           ),
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 16.w),
-            child: Center(
-              child: Text(
-                '${_currentIndex + 1}/$_totalSteps',
-                style: FontManager.bodySmall(color: AppColors.grey),
+          title: ClipRRect(
+            borderRadius: BorderRadius.circular(2.r),
+            child: LinearProgressIndicator(
+              value: progress,
+              backgroundColor: AppColors.greyE8,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.primaryColor,
+              ),
+              minHeight: 4.h,
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: 16.w),
+              child: Center(
+                child: Text(
+                  '${_currentIndex + 1}/$_totalSteps',
+                  style: FontManager.bodySmall(color: AppColors.grey),
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              children: [
-                BasicsStep(
-                  nameController: _nameController,
-                  birthdayController: _birthdayController,
-                  countryController: _countryController,
-                  cityController: _cityController,
-                  selectedGender: _selectedGender,
-                  onGenderChanged: (val) => setState(() => _selectedGender = val),
-                  onSelectDate: _selectDate,
-                ),
-                ConnectionTypesStep(
-                  selectedConnections: _selectedConnections,
-                  onChanged: _toggleConnection,
-                ),
-                UserCategoryStep(
-                  selectedCategory: _selectedCategory,
-                  onChanged: (val) => setState(() => _selectedCategory = val),
-                ),
-                PhotosStep(
-                  photos: _photos,
-                  onAddPhoto: _pickImage,
-                  onRemovePhoto: _removePhoto,
-                ),
-                SummaryStep(
-                  name: _nameController.text,
-                  location: "${_cityController.text}, ${_countryController.text}",
-                  connectionCount: _selectedConnections.length,
-                  category: _selectedCategory,
-                  photoCount: _photos.length,
-                  onComplete: _handleComplete,
-                ),
-              ],
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                children: [
+                  BasicsStep(
+                    nameController: _nameController,
+                    birthdayController: _birthdayController,
+                    countryController: _countryController,
+                    cityController: _cityController,
+                    selectedGender: _selectedGender,
+                    onGenderChanged: (val) =>
+                        setState(() => _selectedGender = val),
+                    onSelectDate: _selectDate,
+                  ),
+                  ConnectionTypesStep(
+                    selectedConnections: _selectedConnections,
+                    onChanged: _toggleConnection,
+                  ),
+                  UserCategoryStep(
+                    selectedCategory: _selectedCategory,
+                    onChanged: (val) => setState(() => _selectedCategory = val),
+                  ),
+                  PhotosStep(
+                    photos: _photos,
+                    onAddPhoto: _pickImage,
+                    onRemovePhoto: _removePhoto,
+                  ),
+                  SummaryStep(
+                    name: _nameController.text,
+                    location:
+                        "${_cityController.text}, ${_countryController.text}",
+                    connectionCount: _selectedConnections.length,
+                    category: _selectedCategory,
+                    photoCount: _photos.length,
+                    onComplete: _handleComplete,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: AppPadding.r24,
-            child: SizedBox(
-              width: double.infinity,
-              height: 50.h,
-              child: FilledButton(
-                onPressed: _nextPage,
-                style: FilledButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
+            Padding(
+              padding: AppPadding.r24,
+              child: SizedBox(
+                width: double.infinity,
+                height: 50.h,
+                child: FilledButton(
+                  onPressed: _nextPage,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  child: Text(
+                    _currentIndex == _totalSteps - 1
+                        ? "Complete Setup"
+                        : "Continue",
+                    style: FontManager.buttonText(fontSize: 16),
                   ),
                 ),
-                child: Text(
-                  _currentIndex == _totalSteps - 1
-                      ? "Complete Setup"
-                      : "Continue",
-                  style: FontManager.buttonText(fontSize: 16),
-                ),
               ),
             ),
-          ),
-          AppSpacing.h16,
-        ],
+            AppSpacing.h16,
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/views/home/your_connections_screen.dart';
 
 class ConnectionsList extends StatelessWidget {
   const ConnectionsList({super.key});
@@ -11,7 +12,7 @@ class ConnectionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: AppPadding.p16),
+      padding: EdgeInsets.symmetric(vertical: AppPadding.p8, horizontal: 12.h),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(AppPadding.p20),
@@ -19,24 +20,30 @@ class ConnectionsList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppPadding.p16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Your Connections",
-                  style: FontManager.heading3(fontSize: 16),
-                ),
-                Text(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Your Connections",
+                style: FontManager.heading3(fontSize: 16),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                    return const YourConnectionsScreen();
+                  }));
+                },
+
+                child: Text(
                   "View All",
                   style: FontManager.bodySmall(
                     fontSize: 12,
                     color: AppColors.primaryColor,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           AppSpacing.h16,
           SingleChildScrollView(

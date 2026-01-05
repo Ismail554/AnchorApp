@@ -92,9 +92,9 @@ class SummaryStep extends StatelessWidget {
       children: [
         Text(
           label,
-          style: FontManager.bodyMedium(color: AppColors.grey, fontSize: 13),
+          style: FontManager.bodyMedium(color: AppColors.grey, fontSize: 12.sp),
         ),
-        Text(value, style: FontManager.heading4(fontSize: 13)),
+        Text(value, style: FontManager.heading4(fontSize: 12.sp)),
       ],
     );
   }
