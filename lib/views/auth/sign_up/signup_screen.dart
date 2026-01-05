@@ -135,16 +135,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const VerificationScreen(),
+                        builder: (context) => const VerificationScreen(
+                          source: VerificationSource.signup,
+                        ),
                       ),
                     );
                   },
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                    foregroundColor: AppColors.white,
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    shape: RoundedRectangleBorder(borderRadius: AppPadding.c12),
-                  ),
+
                   child: Text(
                     AppStrings.register,
                     style: FontManager.buttonText(

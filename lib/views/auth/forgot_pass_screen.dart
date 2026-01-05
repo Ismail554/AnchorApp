@@ -5,6 +5,7 @@ import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/app_strings.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
+import 'package:wynante/views/auth/sign_up/verification_screen.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({super.key});
@@ -43,11 +44,21 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               ),
               AppSpacing.h12,
               SizedBox(
-                width: double.infinity,
-                height: 42.h,
+                width: double.maxFinite,
                 child: FilledButton(
-                  onPressed: () {},
-                  child: Text("Send", style: FontManager.buttonText()),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const VerificationScreen(
+                            source: VerificationSource.forgotPassword,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Text("Continue", style: FontManager.buttonText()),
                 ),
               ),
             ],
