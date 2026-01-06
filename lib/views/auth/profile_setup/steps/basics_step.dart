@@ -3,7 +3,7 @@ import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
-import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
+import 'package:wynante/custom_widget/mini_widget/widget_infofield.dart';
 
 class BasicsStep extends StatelessWidget {
   final TextEditingController nameController;
@@ -41,25 +41,33 @@ class BasicsStep extends StatelessWidget {
             style: FontManager.bodyMedium(color: AppColors.grey),
           ),
           AppSpacing.h32,
-          _buildLabel("Full Name"),
-          WidgetTextfield(
-            controller: nameController,
+          WidgetInfoField(
+            labelText: "Full Name",
             hintText: "Enter your name",
+            controller: nameController,
           ),
           AppSpacing.h24,
-          _buildLabel("Date of Birth"),
-          GestureDetector(
+          WidgetInfoField(
+            labelText: "Date of Birth",
+            hintText: "DD/MM/YYYY",
+            controller: birthdayController,
+            readOnly: true,
             onTap: onSelectDate,
-            child: AbsorbPointer(
-              child: WidgetTextfield(
-                controller: birthdayController,
-                hintText: "DD/MM/YYYY",
-                suffixIcon: Icons.calendar_today_outlined,
-              ),
+            suffixIcon: const Icon(
+              Icons.calendar_today_outlined,
+              color: AppColors.grey,
             ),
           ),
           AppSpacing.h24,
-          _buildLabel("Gender"),
+          Padding(
+            padding: AppPadding.bottom8,
+            child: Text(
+              "Gender",
+              style: FontManager.bodyMedium(
+                color: AppColors.textPrimary,
+              ).copyWith(fontWeight: FontWeight.w600),
+            ),
+          ),
           Row(
             children: [
               Expanded(child: _genderChip("Male")),
@@ -70,31 +78,19 @@ class BasicsStep extends StatelessWidget {
             ],
           ),
           AppSpacing.h24,
-          _buildLabel("Country"),
-          WidgetTextfield(
-            controller: countryController,
+          WidgetInfoField(
+            labelText: "Country",
             hintText: "Enter your country",
+            controller: countryController,
           ),
           AppSpacing.h24,
-          _buildLabel("City"),
-          WidgetTextfield(
-            controller: cityController,
+          WidgetInfoField(
+            labelText: "City",
             hintText: "Enter your city",
+            controller: cityController,
           ),
           AppSpacing.h32,
         ],
-      ),
-    );
-  }
-
-  Widget _buildLabel(String text) {
-    return Padding(
-      padding: AppPadding.bottom8,
-      child: Text(
-        text,
-        style: FontManager.bodyMedium(
-          color: AppColors.textPrimary,
-        ).copyWith(fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -104,11 +100,9 @@ class BasicsStep extends StatelessWidget {
     return GestureDetector(
       onTap: () => onGenderChanged(label),
       child: Container(
-        
         height: 48,
         decoration: BoxDecoration(
-          
-          color: isSelected ? AppColors.white : AppColors.white,
+          color: AppColors.white,
           border: Border.all(
             color: isSelected ? AppColors.primaryColor : AppColors.greyD4,
             width: isSelected ? 1.5 : 1,
@@ -119,7 +113,6 @@ class BasicsStep extends StatelessWidget {
                   BoxShadow(
                     color: AppColors.primaryColor.withOpacity(0.1),
                     blurRadius: 4,
-                  
                     offset: const Offset(0, 2),
                   ),
                 ]

@@ -13,6 +13,7 @@ class ImageAssets {
   static const String men3 = "$imagePath/men3.png";
 
   static const String discoverImg1 = "$imagePath/discover_img.png";
+  static const String human = "$imagePath/human.png";
 }
 
 class IconAssets {
