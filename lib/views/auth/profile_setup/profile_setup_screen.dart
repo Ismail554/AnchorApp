@@ -11,7 +11,7 @@ import 'package:wynante/views/auth/profile_setup/steps/photos_step.dart';
 import 'package:wynante/views/auth/profile_setup/steps/summary_step.dart';
 import 'package:wynante/views/auth/profile_setup/steps/user_category_step.dart';
 
-import 'package:wynante/views/home/homepage_screen.dart';
+import 'package:wynante/views/navigation_bar/main_navigation_screen.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -71,7 +71,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
   void _handleComplete() {
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => const HomepageScreen()),
+      MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
       (route) => false,
     );
   }

@@ -7,6 +7,7 @@ import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/models/your_connection_model.dart';
+import 'package:wynante/views/home/profile_view_screen.dart';
 
 class WidgetConnTile extends StatelessWidget {
   final YourConnectionModel connection;
@@ -15,132 +16,144 @@ class WidgetConnTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: AppPadding.r12,
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileViewScreen(connection: connection),
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Profile Pic with Status
-          Stack(
-            children: [
-              Container(
-                width: 50.w,
-                height: 50.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      "assets/images/human.png",
-                    ), // Placeholder/Fallback
-                    fit: BoxFit.cover,
-                  ),
-                  color: AppColors.greyE8,
-                ),
-              ),
-              Positioned(
-                right: 0,
-                top: 0,
-                child: Container(
-                  width: 12.w,
-                  height: 12.w,
+        );
+      },
+      borderRadius: BorderRadius.circular(16.r),
+      child: Container(
+        padding: AppPadding.r12,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Profile Pic with Status
+            Stack(
+              children: [
+                Container(
+                  width: 50.w,
+                  height: 50.w,
                   decoration: BoxDecoration(
-                    color: _getStatusColor(connection.status),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.white, width: 2),
+                    image: DecorationImage(
+                      image: connection.pic.isNotEmpty
+                          ? AssetImage(connection.pic)
+                          : const AssetImage("assets/images/human.png")
+                                as ImageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                    color: AppColors.greyE8,
                   ),
                 ),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    width: 12.w,
+                    height: 12.w,
+                    decoration: BoxDecoration(
+                      color: _getStatusColor(connection.status),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.white, width: 2),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            AppSpacing.w12,
+            // Connection Details
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    connection.name,
+                    style: FontManager.heading4(fontSize: 14),
+                  ),
+                  Text(
+                    connection.date,
+                    style: FontManager.bodySmall(
+                      color: AppColors.grey,
+                      fontSize: 10,
+                    ),
+                  ),
+                  AppSpacing.h8,
+                  Row(
+                    children: [
+                      Image.asset(
+                        _getConnectionTypeIcon(connection.connectionType),
+                        width: 16.w,
+                        height: 16.w,
+                      ),
+                      AppSpacing.w8,
+                      Icon(
+                        _getActivityIcon(connection.activity),
+                        size: 14.sp,
+                        color: _getActivityColor(connection.activity),
+                      ),
+                      AppSpacing.w4,
+                      Text(
+                        connection.activity,
+                        style: FontManager.bodySmall(
+                          color: AppColors.textPrimary,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
-          AppSpacing.w12,
-          // Connection Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  connection.name,
-                  style: FontManager.heading4(fontSize: 14),
-                ),
-                Text(
-                  connection.date,
-                  style: FontManager.bodySmall(
-                    color: AppColors.grey,
-                    fontSize: 10,
-                  ),
-                ),
-                AppSpacing.h8,
-                Row(
-                  children: [
-                    Image.asset(
-                      _getConnectionTypeIcon(connection.connectionType),
-                      width: 16.w,
-                      height: 16.w,
-                    ),
-                    AppSpacing.w8,
-                    Icon(
-                      _getActivityIcon(connection.activity),
-                      size: 14.sp,
-                      color: _getActivityColor(connection.activity),
-                    ),
-                    AppSpacing.w4,
-                    Text(
-                      connection.activity,
-                      style: FontManager.bodySmall(
-                        color: AppColors.textPrimary,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
             ),
-          ),
-          // Actions
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // Invite Button
-                SvgPicture.asset(SvgAssets.invite, height: 20.h),
+            // Actions
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  // Invite Button
+                  SvgPicture.asset(SvgAssets.invite, height: 20.h),
 
-                AppSpacing.h26,
-                // Message Button
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      SvgAssets.chat,
-                      width: 16.w,
-                      height: 16.h,
-                      color: const Color(0xFF2D9CFC),
-                    ),
-                    AppSpacing.w4,
-
-                    Text(
-                      "Message",
-                      style: FontManager.bodySmall(
+                  AppSpacing.h26,
+                  // Message Button
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        SvgAssets.chat,
+                        width: 16.w,
+                        height: 16.h,
                         color: const Color(0xFF2D9CFC),
-                        fontSize: 12,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      AppSpacing.w4,
+
+                      Text(
+                        "Message",
+                        style: FontManager.bodySmall(
+                          color: const Color(0xFF2D9CFC),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

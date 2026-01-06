@@ -8,6 +8,9 @@ class ImageAssets {
   static const String onboadiing1 = "$imagePath/onboarding1.png";
   static const String onboadiing2 = "$imagePath/onboarding2.png";
   static const String onboadiing3 = "$imagePath/onboarding3.png";
+  static const String men1 = "$imagePath/men1.png";  
+  static const String men2 = "$imagePath/men2.png";  
+  static const String men3 = "$imagePath/men3.png";  
 }
 
 class IconAssets {

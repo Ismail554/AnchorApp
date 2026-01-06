@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_spacing.dart';
-import 'package:wynante/core/app_strings.dart';
+
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
 import 'package:wynante/views/auth/login/login_screen.dart';
@@ -65,7 +65,7 @@ class OnboardingBaseWidget extends StatelessWidget {
 
                     // Description
                     _buildDescription(),
-                    AppSpacing.h12,
+                    AppSpacing.h40,
                     // Navigation Buttons
                     _buildNavigationButtons(context),
                     AppSpacing.h24,
@@ -93,9 +93,7 @@ class OnboardingBaseWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
             child: Text(
@@ -194,27 +192,6 @@ class OnboardingBaseWidget extends StatelessWidget {
             child: Text(
               buttonText,
               style: FontManager.buttonText(color: AppColors.white),
-            ),
-          ),
-        ),
-        AppSpacing.h12,
-        // Login Button (White with blue border)
-        SizedBox(
-          width: double.maxFinite,
-          child: OutlinedButton(
-            onPressed:
-                onLogin ??
-                () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
-                },
-            child: Text(
-              AppStrings.login,
-              style: FontManager.buttonText(color: AppColors.primaryColor),
             ),
           ),
         ),

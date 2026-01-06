@@ -24,18 +24,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   // List of screens - Add your screen widgets here as they're implemented
   final List<Widget> _screens = [
-    // TODO: Implement these screens
+    // Home
     const HomepageScreen(),
-    // const MatchesScreen(),
-    // const MessageScreen(),
-    // const CommunityScreen(),
-    // const ProfileScreen(),
-
-    // Placeholder screens for now
-    const _PlaceholderScreen(title: 'Home'),
+    // Matches
     const _PlaceholderScreen(title: 'Matches'),
+    // Message
     const _PlaceholderScreen(title: 'Message'),
+    // Community
     const _PlaceholderScreen(title: 'Community'),
+    // Profile
     const _PlaceholderScreen(title: 'Profile'),
   ];
 

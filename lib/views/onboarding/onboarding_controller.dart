@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wynante/views/navigation_bar/main_navigation_screen.dart';
+import 'package:wynante/views/auth/login/login_screen.dart';
 import 'package:wynante/views/onboarding/screens/onboading_screen1.dart';
 import 'package:wynante/views/onboarding/screens/onboading_screen2.dart';
 import 'package:wynante/views/onboarding/screens/onboading_screen3.dart';
@@ -14,19 +14,19 @@ class OnboardingController {
     );
   }
 
-  /// Skip onboarding and go to main navigation
+  /// Skip onboarding and go to login
   static void skipOnboarding(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
     );
   }
 
-  /// Complete onboarding and go to main navigation
+  /// Complete onboarding and go to login
   static void completeOnboarding(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
     );
   }
 }
