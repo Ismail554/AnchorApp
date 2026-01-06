@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wynante/views/community/community_main_screen.dart';
 import 'package:wynante/views/home/homepage_screen.dart';
+import 'package:wynante/views/matches/match_home_screen.dart';
 import 'package:wynante/views/navigation_bar/custom_bottom_nav_bar.dart';
 
 /// Main Navigation Screen with Bottom Navigation Bar
@@ -22,35 +24,67 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     _currentIndex = widget.initialIndex ?? 0;
   }
 
-  // List of screens - Add your screen widgets here as they're implemented
-  final List<Widget> _screens = [
-    // Home
-    const HomepageScreen(),
-    // Matches
-    const _PlaceholderScreen(title: 'Matches'),
-    // Message
-    const _PlaceholderScreen(title: 'Message'),
-    // Community
-    const _PlaceholderScreen(title: 'Community'),
-    // Profile
-    const _PlaceholderScreen(title: 'Profile'),
-  ];
+  DateTime? currentBackPressTime;
+  final GlobalKey<NavigatorState> matchNavigatorKey =
+      GlobalKey<NavigatorState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: IndexedStack(
+          index: _currentIndex,
+          children: [
+            // Home
+            const HomepageScreen(),
+            // Matches
+            MatchHomeScreen(navigatorKey: matchNavigatorKey),
+            // Message
+            const _PlaceholderScreen(title: 'Message'),
+            // Community
+            const CommunityMainScreen(),
+            // Profile
+            const _PlaceholderScreen(title: 'Profile'),
+          ],
+        ),
+        bottomNavigationBar: CustomBottomNavBar(
+          currentIndex: _currentIndex,
+          onTap: _onTabTapped,
+        ),
+      ),
+    );
+  }
+
+  Future<bool> _onWillPop() async {
+    // If on Matches tab (index 1), try to pop nested navigator first
+    if (_currentIndex == 1) {
+      final isPopped = await matchNavigatorKey.currentState?.maybePop();
+      if (isPopped == true) {
+        return false; // Handled by nested navigator
+      }
+    }
+
+    // Double back to exit logic
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Press back again to exit'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return false;
+    }
+    return true; // Exit app
+  }
 
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _screens),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
-      ),
-    );
   }
 }
 

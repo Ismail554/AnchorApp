@@ -8,9 +8,11 @@ class ImageAssets {
   static const String onboadiing1 = "$imagePath/onboarding1.png";
   static const String onboadiing2 = "$imagePath/onboarding2.png";
   static const String onboadiing3 = "$imagePath/onboarding3.png";
-  static const String men1 = "$imagePath/men1.png";  
-  static const String men2 = "$imagePath/men2.png";  
-  static const String men3 = "$imagePath/men3.png";  
+  static const String men1 = "$imagePath/men1.png";
+  static const String men2 = "$imagePath/men2.png";
+  static const String men3 = "$imagePath/men3.png";
+
+  static const String discoverImg1 = "$imagePath/discover_img.png";
 }
 
 class IconAssets {
@@ -22,10 +24,9 @@ class IconAssets {
   // ======= Connection Status Icons =======
   static const String chat = "$iconPath/chat.png";
   static const String high = "$iconPath/high.png";
-  static const String medium = "$iconPath/medium.png"; 
+  static const String medium = "$iconPath/medium.png";
   static const String low = "$iconPath/low.png";
-  static const String invite = "$iconPath/invite.png";  
-
+  static const String invite = "$iconPath/invite.png";
 }
 
 class JsonAssets {}
@@ -33,7 +34,7 @@ class JsonAssets {}
 class SvgAssets {
   // ✅ General SVG Files
   static const String logo = "$svgPath/app_logo.svg";
-  
+
   // Navigation Icons
   static const String homeNav = "$svgPath/home_nav.svg";
   static const String matchesNav = "$svgPath/matches_nav.svg";

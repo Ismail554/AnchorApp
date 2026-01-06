@@ -64,6 +64,8 @@ class AppPadding {
       EdgeInsets.symmetric(horizontal: 24.r, vertical: 12.r);
   static EdgeInsets get h24v16 =>
       EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.r);
+  static EdgeInsets get h20v16 =>
+      EdgeInsets.symmetric(horizontal: 20.r, vertical: 16.r);
 
   // Only specific sides (responsive)
   static EdgeInsets get top4 => EdgeInsets.only(top: 4.r);

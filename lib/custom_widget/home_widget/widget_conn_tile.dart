@@ -11,8 +11,13 @@ import 'package:wynante/views/home/profile_view_screen.dart';
 
 class WidgetConnTile extends StatelessWidget {
   final YourConnectionModel connection;
+  final Widget? topRightWidget;
 
-  const WidgetConnTile({super.key, required this.connection});
+  const WidgetConnTile({
+    super.key,
+    required this.connection,
+    this.topRightWidget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +129,9 @@ class WidgetConnTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  // Invite Button
-                  SvgPicture.asset(SvgAssets.invite, height: 20.h),
+                  // Invite Button or Custom Widget
+                  topRightWidget ??
+                      SvgPicture.asset(SvgAssets.invite, height: 20.h),
 
                   AppSpacing.h26,
                   // Message Button
