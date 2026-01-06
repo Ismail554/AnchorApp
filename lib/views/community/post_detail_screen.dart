@@ -19,7 +19,28 @@ class PostDetailScreen extends StatefulWidget {
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
   final TextEditingController _commentController = TextEditingController();
-  final List<Comment> _comments = Comment.dummyComments;
+  final List<Comment> _comments = List.from(Comment.dummyComments);
+
+  void _addComment() {
+    final content = _commentController.text.trim();
+    if (content.isEmpty) return;
+
+    final newComment = Comment(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      authorName: 'You',
+      authorImage: 'assets/images/human.png', // Placeholder
+      timeAgo: 'Just now',
+      content: content,
+      likeCount: 0,
+    );
+
+    setState(() {
+      _comments.add(newComment);
+      _commentController.clear();
+      // Update post comment count (mock sync)
+      // Note: This won't update the list view count unless using a real state manager
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +63,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-              
-                  AbsorbPointer(
-                    absorbing: true, // Disable navigation tap inside
-                    child: CommunityPostCard(post: widget.post),
-                  ),
-
+                  CommunityPostCard(post: widget.post, isDetailView: true),
                   Padding(
                     padding: AppPadding.h20,
                     child: Column(
@@ -123,7 +139,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: _addComment,
                     icon: Icon(Icons.send, color: Colors.white, size: 20.sp),
                     constraints: const BoxConstraints(),
                     padding: EdgeInsets.all(8.r),

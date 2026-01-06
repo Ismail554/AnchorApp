@@ -10,13 +10,44 @@ import 'package:wynante/views/community/widgets/category_filter_list.dart';
 import 'package:wynante/views/community/widgets/community_post_card.dart';
 
 class CommunityMainScreen extends StatefulWidget {
-  const CommunityMainScreen({super.key});
+  final GlobalKey<NavigatorState>? navigatorKey;
+
+  const CommunityMainScreen({super.key, this.navigatorKey});
 
   @override
   State<CommunityMainScreen> createState() => _CommunityMainScreenState();
 }
 
 class _CommunityMainScreenState extends State<CommunityMainScreen> {
+  late final GlobalKey<NavigatorState> navigatorKey;
+
+  @override
+  void initState() {
+    super.initState();
+    navigatorKey = widget.navigatorKey ?? GlobalKey<NavigatorState>();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: navigatorKey,
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+          builder: (context) => const _CommunityContent(),
+        );
+      },
+    );
+  }
+}
+
+class _CommunityContent extends StatefulWidget {
+  const _CommunityContent();
+
+  @override
+  State<_CommunityContent> createState() => _CommunityContentState();
+}
+
+class _CommunityContentState extends State<_CommunityContent> {
   String _selectedCategory = "All";
   final List<String> _categories = [
     "All",

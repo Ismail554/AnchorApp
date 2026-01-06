@@ -27,6 +27,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   DateTime? currentBackPressTime;
   final GlobalKey<NavigatorState> matchNavigatorKey =
       GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> communityNavigatorKey =
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             // Message
             const _PlaceholderScreen(title: 'Message'),
             // Community
-            const CommunityMainScreen(),
+            CommunityMainScreen(navigatorKey: communityNavigatorKey),
             // Profile
             const _PlaceholderScreen(title: 'Profile'),
           ],
@@ -60,6 +62,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     // If on Matches tab (index 1), try to pop nested navigator first
     if (_currentIndex == 1) {
       final isPopped = await matchNavigatorKey.currentState?.maybePop();
+      if (isPopped == true) {
+        return false; // Handled by nested navigator
+      }
+    }
+
+    // If on Community tab (index 3), try to pop nested navigator first
+    if (_currentIndex == 3) {
+      final isPopped = await communityNavigatorKey.currentState?.maybePop();
       if (isPopped == true) {
         return false; // Handled by nested navigator
       }

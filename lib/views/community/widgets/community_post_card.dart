@@ -6,20 +6,57 @@ import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/models/community_model.dart';
 import 'package:wynante/views/community/post_detail_screen.dart';
 
-class CommunityPostCard extends StatelessWidget {
+class CommunityPostCard extends StatefulWidget {
   final CommunityPost post;
+  final bool isDetailView;
 
-  const CommunityPostCard({super.key, required this.post});
+  const CommunityPostCard({
+    super.key,
+    required this.post,
+    this.isDetailView = false,
+  });
+
+  @override
+  State<CommunityPostCard> createState() => _CommunityPostCardState();
+}
+
+class _CommunityPostCardState extends State<CommunityPostCard> {
+  late bool _isLiked;
+  late int _likeCount;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLiked = widget.post.isLiked;
+    _likeCount = widget.post.likeCount;
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _isLiked = !_isLiked;
+      if (_isLiked) {
+        _likeCount++;
+      } else {
+        _likeCount--;
+      }
+      // Update model (for mock persistence within session)
+      widget.post.isLiked = _isLiked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PostDetailScreen(post: post)),
-        );
-      },
+      onTap: widget.isDetailView
+          ? null
+          : () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostDetailScreen(post: widget.post),
+                ),
+              );
+            },
       child: Container(
         margin: EdgeInsets.only(bottom: 16.h),
         padding: EdgeInsets.all(16.r),
@@ -43,8 +80,8 @@ class CommunityPostCard extends StatelessWidget {
                 CircleAvatar(
                   radius: 20.r,
                   backgroundImage: AssetImage(
-                    post.authorImage.isNotEmpty
-                        ? post.authorImage
+                    widget.post.authorImage.isNotEmpty
+                        ? widget.post.authorImage
                         : 'assets/images/placeholder.png',
                   ),
                   backgroundColor: AppColors.greyE8,
@@ -55,7 +92,7 @@ class CommunityPostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        post.authorName,
+                        widget.post.authorName,
                         style: FontManager.heading4(fontSize: 14),
                       ),
                       Row(
@@ -67,21 +104,21 @@ class CommunityPostCard extends StatelessWidget {
                             ),
                             decoration: BoxDecoration(
                               color: _getCategoryColor(
-                                post.category,
+                                widget.post.category,
                               ).withOpacity(0.1),
                               borderRadius: BorderRadius.circular(4.r),
                             ),
                             child: Text(
-                              post.category,
+                              widget.post.category,
                               style: FontManager.bodySmall(
-                                color: _getCategoryColor(post.category),
+                                color: _getCategoryColor(widget.post.category),
                                 fontSize: 10,
                               ).copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
                           AppSpacing.w8,
                           Text(
-                            "• ${post.timeAgo}",
+                            "• ${widget.post.timeAgo}",
                             style: FontManager.bodySmall(color: AppColors.grey),
                           ),
                         ],
@@ -95,11 +132,11 @@ class CommunityPostCard extends StatelessWidget {
             AppSpacing.h12,
 
             // Content
-            if (post.imageAsset != null) ...[
+            if (widget.post.imageAsset != null) ...[
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
                 child: Image.asset(
-                  post.imageAsset!,
+                  widget.post.imageAsset!,
                   width: double.infinity,
                   height: 180.h,
                   fit: BoxFit.cover,
@@ -109,50 +146,60 @@ class CommunityPostCard extends StatelessWidget {
             ],
 
             Text(
-              post.title,
+              widget.post.title,
               style: FontManager.heading4(fontSize: 16),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              maxLines: widget.isDetailView ? null : 2,
+              overflow: widget.isDetailView ? null : TextOverflow.ellipsis,
             ),
             AppSpacing.h8,
             Text(
-              post.content,
+              widget.post.content,
               style: FontManager.bodyMedium(
                 color: AppColors.textSecondary,
                 fontSize: 14,
               ),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+              maxLines: widget.isDetailView ? null : 3,
+              overflow: widget.isDetailView ? null : TextOverflow.ellipsis,
             ),
-            AppSpacing.h8,
-            Text(
-              "Read more",
-              style: FontManager.bodySmall(
-                color: AppColors.primaryColor,
-                fontSize: 12,
+            if (!widget.isDetailView) ...[
+              AppSpacing.h8,
+              Text(
+                "Read more",
+                style: FontManager.bodySmall(
+                  color: AppColors.primaryColor,
+                  fontSize: 12,
+                ),
               ),
-            ),
+            ],
             AppSpacing.h16,
 
             // Actions
             Row(
               children: [
                 _buildAction(
-                  icon: post.isLiked
+                  icon: _isLiked
                       ? Icons.thumb_up_alt
                       : Icons.thumb_up_alt_outlined,
-                  color: post.isLiked
-                      ? AppColors.primaryColor
-                      : AppColors.cardBbg,
-                  count: post.likeCount,
-                  onTap: () {},
+                  color: _isLiked ? AppColors.primaryColor : AppColors.grey,
+                  count: _likeCount,
+                  onTap: _toggleLike,
                 ),
                 AppSpacing.w24,
                 _buildAction(
                   icon: Icons.chat_bubble_outline,
-                  color: AppColors.cardBbg,
-                  count: post.commentCount,
-                  onTap: () {},
+                  color: AppColors.grey2D,
+                  count: widget.post.commentCount,
+                  onTap: widget.isDetailView
+                      ? () {}
+                      : () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  PostDetailScreen(post: widget.post),
+                            ),
+                          );
+                        },
                 ),
                 const Spacer(),
                 Icon(Icons.share_outlined, color: AppColors.grey, size: 20.sp),
