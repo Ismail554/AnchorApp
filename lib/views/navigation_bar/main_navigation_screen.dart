@@ -3,6 +3,7 @@ import 'package:wynante/views/community/community_main_screen.dart';
 import 'package:wynante/views/home/homepage_screen.dart';
 import 'package:wynante/views/matches/match_home_screen.dart';
 import 'package:wynante/views/navigation_bar/custom_bottom_nav_bar.dart';
+import 'package:wynante/views/profile/main_profile_screen.dart';
 
 /// Main Navigation Screen with Bottom Navigation Bar
 /// Manages navigation between Home, Matches, Message, Community, and Profile screens
@@ -47,7 +48,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             // Community
             CommunityMainScreen(navigatorKey: communityNavigatorKey),
             // Profile
-            const _PlaceholderScreen(title: 'Profile'),
+            const MainProfileScreen(),
           ],
         ),
         bottomNavigationBar: CustomBottomNavBar(

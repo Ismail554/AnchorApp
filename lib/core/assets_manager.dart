@@ -14,6 +14,11 @@ class ImageAssets {
 
   static const String discoverImg1 = "$imagePath/discover_img.png";
   static const String human = "$imagePath/human.png";
+
+  static const String frame1 = "$imagePath/frame1.png";
+  static const String frame2 = "$imagePath/frame2.png";
+  static const String frame3 = "$imagePath/frame3.png";
+  static const String frame4 = "$imagePath/frame4.png";
 }
 
 class IconAssets {
