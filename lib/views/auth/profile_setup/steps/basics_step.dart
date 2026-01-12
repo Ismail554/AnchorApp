@@ -4,6 +4,7 @@ import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_infofield.dart';
+import 'package:wynante/views/auth/profile_setup/widgets/custom_csc_picker/custom_csc_picker.dart';
 
 class BasicsStep extends StatelessWidget {
   final TextEditingController nameController;
@@ -28,7 +29,6 @@ class BasicsStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      
       padding: AppPadding.h24,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,16 +78,50 @@ class BasicsStep extends StatelessWidget {
             ],
           ),
           AppSpacing.h24,
-          WidgetInfoField(
-            labelText: "Country",
-            hintText: "Enter your country",
-            controller: countryController,
+          Padding(
+            padding: AppPadding.bottom8,
+            child: Text(
+              "Country & City",
+              style: FontManager.bodyMedium(
+                color: AppColors.textPrimary,
+              ).copyWith(fontWeight: FontWeight.w600),
+            ),
           ),
-          AppSpacing.h24,
-          WidgetInfoField(
-            labelText: "City",
-            hintText: "Enter your city",
-            controller: cityController,
+
+          CustomCSCPicker(
+            showStates: false,
+            showCities: true,
+            layout: Layout.vertical,
+            flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+            onCountryChanged: (value) {
+              countryController.text = value;
+            },
+            onStateChanged: (value) {
+              // optional
+            },
+            onCityChanged: (value) {
+              cityController.text = value ?? "";
+            },
+            dropdownDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.white,
+              border: Border.all(color: AppColors.greyD4, width: 1),
+            ),
+            disabledDropdownDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.greyF0,
+              border: Border.all(color: AppColors.greyD4, width: 1),
+            ),
+            selectedItemStyle: FontManager.bodyMedium(
+              color: AppColors.textPrimary,
+            ),
+            dropdownHeadingStyle: FontManager.heading4(
+              color: AppColors.textPrimary,
+            ),
+            dropdownItemStyle: FontManager.bodyMedium(
+              color: AppColors.textPrimary,
+            ),
+            searchBarRadius: 12,
           ),
           AppSpacing.h32,
         ],

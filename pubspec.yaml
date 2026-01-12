@@ -22,6 +22,7 @@ dependencies:
   flutter_native_splash: ^2.4.7
   pinput: ^6.0.1
   image_picker: ^1.2.1
+  csc_picker_plus: ^0.0.3
 
 dev_dependencies:
   flutter_test:
