@@ -23,6 +23,7 @@ dependencies:
   pinput: ^6.0.1
   image_picker: ^1.2.1
   csc_picker_plus: ^0.0.3
+  textfield_tags: ^3.0.1
 
 dev_dependencies:
   flutter_test:

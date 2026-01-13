@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/models/user_profile_model.dart';
 import 'package:wynante/services/profile_service.dart';
+import 'package:wynante/views/profile/edit_profile_screen.dart';
 import 'package:wynante/views/profile/widgets/profile_completeness_card.dart';
 import 'package:wynante/views/profile/widgets/profile_gallery.dart';
 import 'package:wynante/views/profile/widgets/profile_header.dart';
@@ -88,7 +89,21 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
             padding: AppPadding.r20,
             child: Column(
               children: [
-                ProfileHeader(user: user, onEdit: () {}),
+                ProfileHeader(
+                  user: user,
+                  onEdit: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditProfileScreen(
+                          initialInterests: user.interests,
+                          initialLanguages: user.languages,
+                          initialLookingFor: [user.lookingFor],
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(height: 24.h),
                 ProfileCompletenessCard(percentage: user.completionPercentage),
                 SizedBox(height: 24.h),
