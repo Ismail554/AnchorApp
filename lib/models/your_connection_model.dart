@@ -21,6 +21,7 @@ class YourConnectionModel {
   final List<String> interests;
   final List<String> languages;
   final List<PostModel> posts;
+  final int? subscriberCount;
 
   YourConnectionModel({
     required this.name,
@@ -43,6 +44,7 @@ class YourConnectionModel {
     this.interests = const [],
     this.languages = const [],
     this.posts = const [],
+    this.subscriberCount,
   });
 
   static List<YourConnectionModel> dummyData = [

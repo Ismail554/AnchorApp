@@ -12,24 +12,30 @@ import 'package:wynante/views/home/profile_view_screen.dart';
 class WidgetConnTile extends StatelessWidget {
   final YourConnectionModel connection;
   final Widget? topRightWidget;
+  final bool isChannel;
+  final VoidCallback? onTap;
 
   const WidgetConnTile({
     super.key,
     required this.connection,
     this.topRightWidget,
+    this.isChannel = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProfileViewScreen(connection: connection),
-          ),
-        );
-      },
+      onTap:
+          onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfileViewScreen(connection: connection),
+              ),
+            );
+          },
       borderRadius: BorderRadius.circular(16.r),
       child: Container(
         padding: AppPadding.r12,
@@ -65,19 +71,20 @@ class WidgetConnTile extends StatelessWidget {
                     color: AppColors.greyE8,
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: Container(
-                    width: 12.w,
-                    height: 12.w,
-                    decoration: BoxDecoration(
-                      color: _getStatusColor(connection.status),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.white, width: 2),
+                if (!isChannel)
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    child: Container(
+                      width: 12.w,
+                      height: 12.w,
+                      decoration: BoxDecoration(
+                        color: _getStatusColor(connection.status),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.white, width: 2),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             AppSpacing.w12,
@@ -98,29 +105,64 @@ class WidgetConnTile extends StatelessWidget {
                     ),
                   ),
                   AppSpacing.h8,
-                  Row(
-                    children: [
-                      Image.asset(
-                        _getConnectionTypeIcon(connection.connectionType),
-                        width: 16.w,
-                        height: 16.w,
-                      ),
-                      AppSpacing.w8,
-                      Icon(
-                        _getActivityIcon(connection.activity),
-                        size: 14.sp,
-                        color: _getActivityColor(connection.activity),
-                      ),
-                      AppSpacing.w4,
-                      Text(
-                        connection.activity,
-                        style: FontManager.bodySmall(
-                          color: AppColors.textPrimary,
-                          fontSize: 12,
+                  if (isChannel)
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.person_outline,
+                          size: 14.sp,
+                          color: AppColors.grey,
                         ),
-                      ),
-                    ],
-                  ),
+                        AppSpacing.w4,
+                        Text(
+                          '${connection.subscriberCount ?? 0}',
+                          style: FontManager.bodySmall(
+                            color: AppColors.textPrimary,
+                            fontSize: 12,
+                          ),
+                        ),
+                        AppSpacing.w4,
+                        Text(
+                          '•',
+                          style: FontManager.bodySmall(
+                            color: AppColors.grey,
+                            fontSize: 12,
+                          ),
+                        ),
+                        AppSpacing.w4,
+                        Text(
+                          connection.activity, // Category
+                          style: FontManager.bodySmall(
+                            color: AppColors.textPrimary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Row(
+                      children: [
+                        Image.asset(
+                          _getConnectionTypeIcon(connection.connectionType),
+                          width: 16.w,
+                          height: 16.w,
+                        ),
+                        AppSpacing.w8,
+                        Icon(
+                          _getActivityIcon(connection.activity),
+                          size: 14.sp,
+                          color: _getActivityColor(connection.activity),
+                        ),
+                        AppSpacing.w4,
+                        Text(
+                          connection.activity,
+                          style: FontManager.bodySmall(
+                            color: AppColors.textPrimary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
@@ -135,26 +177,26 @@ class WidgetConnTile extends StatelessWidget {
 
                   AppSpacing.h26,
                   // Message Button
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SvgPicture.asset(
-                        SvgAssets.chat,
-                        width: 16.w,
-                        height: 16.h,
-                        color: const Color(0xFF2D9CFC),
-                      ),
-                      AppSpacing.w4,
-
-                      Text(
-                        "Message",
-                        style: FontManager.bodySmall(
+                  if (!isChannel)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(
+                          SvgAssets.chat,
+                          width: 16.w,
+                          height: 16.h,
                           color: const Color(0xFF2D9CFC),
-                          fontSize: 12,
                         ),
-                      ),
-                    ],
-                  ),
+                        AppSpacing.w4,
+                        Text(
+                          "Message",
+                          style: FontManager.bodySmall(
+                            color: const Color(0xFF2D9CFC),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),

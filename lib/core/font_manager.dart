@@ -205,7 +205,7 @@ class FontManager {
   static TextStyle titleText({
     Color color = mainTextColor,
     double fontSize = 22,
-  }) => heading2(color: color, fontSize: fontSize);
+  }) => heading3(color: color, fontSize: fontSize);
 
   /// Big Title Text - Legacy support
   static TextStyle bigTitleText({

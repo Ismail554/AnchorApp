@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wynante/views/community/community_main_screen.dart';
 import 'package:wynante/views/home/homepage_screen.dart';
 import 'package:wynante/views/matches/match_home_screen.dart';
+import 'package:wynante/views/messaging/messaging_home_screen.dart';
 import 'package:wynante/views/navigation_bar/custom_bottom_nav_bar.dart';
 import 'package:wynante/views/profile/main_profile_screen.dart';
 
@@ -30,6 +31,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       GlobalKey<NavigatorState>();
   final GlobalKey<NavigatorState> communityNavigatorKey =
       GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> messageNavigatorKey =
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             // Matches
             MatchHomeScreen(navigatorKey: matchNavigatorKey),
             // Message
-            const _PlaceholderScreen(title: 'Message'),
+            MessagingHomeScreen(navigatorKey: messageNavigatorKey),
             // Community
             CommunityMainScreen(navigatorKey: communityNavigatorKey),
             // Profile

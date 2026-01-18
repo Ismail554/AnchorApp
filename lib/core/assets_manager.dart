@@ -33,6 +33,12 @@ class IconAssets {
   static const String medium = "$iconPath/medium.png";
   static const String low = "$iconPath/low.png";
   static const String invite = "$iconPath/invite.png";
+
+  // ========= Message Icons =========
+  static const String anchorAi = "$iconPath/anchor_ai.png";
+  static const String channel = "$iconPath/channel_icon.png";
+  static const String profile1 = "$iconPath/profile1.png";
+  static const String profile2 = "$iconPath/profile2.png";
 }
 
 class JsonAssets {}
