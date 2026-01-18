@@ -8,6 +8,7 @@ import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
 import 'package:wynante/models/your_connection_model.dart';
 
 import 'package:wynante/views/messaging/channel_chat_screen.dart';
+import 'package:wynante/views/messaging/create_channel_screen.dart';
 
 class ChannelsScreen extends StatefulWidget {
   const ChannelsScreen({super.key});
@@ -115,23 +116,33 @@ class _ChannelsScreenState extends State<ChannelsScreen> {
                   'List of channels',
                   style: FontManager.heading4(fontSize: 16),
                 ),
-                Container(
-                  padding: EdgeInsets.all(4.r),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(8.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CreateChannelScreen(),
                       ),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.add,
-                    color: const Color(0xFF2D9CFC),
-                    size: 24.sp,
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4.r),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(8.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      color: const Color(0xFF2D9CFC),
+                      size: 24.sp,
+                    ),
                   ),
                 ),
               ],

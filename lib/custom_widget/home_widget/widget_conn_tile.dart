@@ -64,8 +64,7 @@ class WidgetConnTile extends StatelessWidget {
                     image: DecorationImage(
                       image: connection.pic.isNotEmpty
                           ? AssetImage(connection.pic)
-                          : const AssetImage("assets/images/human.png")
-                                as ImageProvider,
+                          : const AssetImage(ImageAssets.human) as ImageProvider,
                       fit: BoxFit.cover,
                     ),
                     color: AppColors.greyE8,
@@ -104,7 +103,6 @@ class WidgetConnTile extends StatelessWidget {
                       fontSize: 10,
                     ),
                   ),
-                  AppSpacing.h8,
                   if (isChannel)
                     Row(
                       children: [

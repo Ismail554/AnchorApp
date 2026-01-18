@@ -19,6 +19,12 @@ class ImageAssets {
   static const String frame2 = "$imagePath/frame2.png";
   static const String frame3 = "$imagePath/frame3.png";
   static const String frame4 = "$imagePath/frame4.png";
+
+  // =============== Event Images ===============
+  static const String event1 = "$imagePath/event1.png";
+  static const String event2 = "$imagePath/event2.png";
+  static const String event3 = "$imagePath/event3.png";
+
 }
 
 class IconAssets {
