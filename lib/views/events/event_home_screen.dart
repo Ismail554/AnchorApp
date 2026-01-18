@@ -4,6 +4,7 @@ import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/models/event_model.dart';
 import 'package:wynante/views/events/widgets/event_card.dart';
+import 'package:wynante/views/events/create_event_screen.dart';
 
 class EventHomeScreen extends StatefulWidget {
   const EventHomeScreen({super.key});
@@ -109,7 +110,12 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
             IconButton(
               icon: const Icon(Icons.add, color: AppColors.primaryColor),
               onPressed: () {
-                // Handle add event
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CreateEventScreen(),
+                  ),
+                );
               },
             ),
           ],
