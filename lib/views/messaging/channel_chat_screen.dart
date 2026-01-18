@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/models/channel_message_model.dart';
 import 'package:wynante/core/assets_manager.dart';
+import 'package:wynante/views/messaging/channel_members_screen.dart';
+import 'package:wynante/views/messaging/invite_member_screen.dart';
 
 class ChannelScreen extends StatefulWidget {
   final String channelName;
@@ -148,8 +150,21 @@ class _ChannelScreenState extends State<ChannelScreen> {
             onSelected: (value) {
               if (value == 'delete') {
                 _showDeleteChannelDialog();
+              } else if (value == 'invite') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const InviteMemberScreen(),
+                  ),
+                );
+              } else if (value == 'members') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChannelMembersScreen(),
+                  ),
+                );
               }
-              // TODO: handle 'edit', 'invite', 'members'
             },
             itemBuilder: (context) => [
               PopupMenuItem(
