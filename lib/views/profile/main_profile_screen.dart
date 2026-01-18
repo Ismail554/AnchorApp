@@ -9,6 +9,7 @@ import 'package:wynante/views/profile/widgets/profile_gallery.dart';
 import 'package:wynante/views/profile/widgets/profile_header.dart';
 import 'package:wynante/views/profile/widgets/profile_info_section.dart';
 import 'package:wynante/views/profile/widgets/profile_stats_row.dart';
+import 'package:wynante/views/settings/settings_home_screen.dart';
 
 class MainProfileScreen extends StatefulWidget {
   const MainProfileScreen({super.key});
@@ -62,7 +63,12 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
               IconButton(
                 icon: const Icon(Icons.settings, color: Colors.grey),
                 onPressed: () {
-                  // Navigate to settings
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsHomeScreen(),
+                    ),
+                  );
                 },
               ),
             ],

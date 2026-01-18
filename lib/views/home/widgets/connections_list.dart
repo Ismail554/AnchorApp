@@ -4,7 +4,11 @@ import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/core/assets_manager.dart';
+import 'package:wynante/models/your_connection_model.dart';
+import 'package:wynante/views/home/profile_view_screen.dart';
 import 'package:wynante/views/home/your_connections_screen.dart';
+import 'package:wynante/views/messaging/chat_screen.dart';
 
 class ConnectionsList extends StatelessWidget {
   const ConnectionsList({super.key});
@@ -29,12 +33,15 @@ class ConnectionsList extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                    return const YourConnectionsScreen();
-                  }));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const YourConnectionsScreen();
+                      },
+                    ),
+                  );
                 },
-
                 child: Text(
                   "View All",
                   style: FontManager.bodySmall(
@@ -54,7 +61,7 @@ class ConnectionsList extends StatelessWidget {
                 return Padding(
                   // Add spacing between items
                   padding: EdgeInsets.only(right: 16.w),
-                  child: _buildAvatarItem(index),
+                  child: _buildAvatarItem(context, index),
                 );
               }),
             ),
@@ -64,7 +71,30 @@ class ConnectionsList extends StatelessWidget {
     );
   }
 
-  Widget _buildAvatarItem(int index) {
+  YourConnectionModel _getConnectionModel(int index) {
+    final names = ["Sarat", "Mike", "Emma", "James", "Lily"];
+    // Cycle through available images
+    final images = [ImageAssets.men1, ImageAssets.men2, ImageAssets.men3];
+    final image = images[index % images.length];
+
+    return YourConnectionModel(
+      name: names[index],
+      pic: image,
+      date: "Since ${index + 1} Jan 2025",
+      status: "online",
+      connectionType: "medium",
+      activity: "Social",
+      age: 25 + index,
+      role: "Member",
+      about: "This is a dummy profile for ${names[index]}.",
+      galleryImages: [],
+      gender: index % 2 == 0 ? "Man" : "Woman",
+      interests: ["Travel", "Music"],
+      languages: ["English"],
+    );
+  }
+
+  Widget _buildAvatarItem(BuildContext context, int index) {
     final names = ["Sarat", "Mike", "Emma", "James", "Lily"];
     final colors = [
       Colors.green,
@@ -77,41 +107,100 @@ class ConnectionsList extends StatelessWidget {
 
     return Column(
       children: [
-        Stack(
-          children: [
-            Container(
-              width: 56.w,
-              height: 56.w,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primaryLight.withOpacity(
-                  0.2,
-                ), // Light background for initials
-              ),
-              child: Center(
-                child: Text(
-                  initials[index],
-                  style: FontManager.heading3(
-                    fontSize: 18,
-                    color: AppColors.primaryColor,
-                  ),
+        PopupMenuButton<String>(
+          offset: const Offset(0, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppPadding.p12),
+          ),
+          onSelected: (value) {
+            final connection = _getConnectionModel(index);
+            if (value == 'View Profile') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ProfileViewScreen(connection: connection),
                 ),
+              );
+            } else if (value == 'Message') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ChatScreen(name: connection.name, image: connection.pic),
+                ),
+              );
+            }
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: 'Message',
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.message_outlined,
+                    size: 20,
+                    color: AppColors.textPrimary,
+                  ),
+                  SizedBox(width: 8.w),
+                  Text("Message", style: FontManager.bodySmall(fontSize: 14)),
+                ],
               ),
             ),
-            Positioned(
-              right: 2,
-              bottom: 2,
-              child: Container(
-                width: 12.w,
-                height: 12.w,
-                decoration: BoxDecoration(
-                  color: colors[index],
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 2),
-                ),
+            PopupMenuItem(
+              value: 'View Profile',
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.person_outline,
+                    size: 20,
+                    color: AppColors.textPrimary,
+                  ),
+                  SizedBox(width: 8.w),
+                  Text(
+                    "View Profile",
+                    style: FontManager.bodySmall(fontSize: 14),
+                  ),
+                ],
               ),
             ),
           ],
+          child: Stack(
+            children: [
+              Container(
+                width: 56.w,
+                height: 56.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primaryLight.withOpacity(
+                    0.2,
+                  ), // Light background for initials
+                ),
+                child: Center(
+                  child: Text(
+                    initials[index],
+                    style: FontManager.heading3(
+                      fontSize: 18,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 2,
+                bottom: 2,
+                child: Container(
+                  width: 12.w,
+                  height: 12.w,
+                  decoration: BoxDecoration(
+                    color: colors[index],
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         AppSpacing.h8,
         Text(names[index], style: FontManager.bodySmall(fontSize: 12)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_colors.dart';
+import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,18 +17,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Padding(
         padding: EdgeInsets.only(left: 16.w),
         // Use a placeholder logo or asset if available
-        child: Container(
-          // Placeholder for Logo
-          decoration: const BoxDecoration(
-            color: Colors.transparent,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.anchor,
-            color: AppColors.primaryColor,
-            size: 28,
-          ),
-        ),
+        child: Image.asset(IconAssets.appIcon),
       ),
       titleSpacing: 8.w,
       title: Column(
