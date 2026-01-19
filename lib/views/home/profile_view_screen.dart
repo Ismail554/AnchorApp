@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wynante/core/app_colors.dart'; // Assuming this exists
 import 'package:wynante/core/app_padding.dart'; // Assuming this exists
 import 'package:wynante/core/app_spacing.dart'; // Assuming this exists
+import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart'; // Assuming this exists
 import 'package:wynante/models/your_connection_model.dart';
 import 'package:wynante/views/home/aet_screen.dart';
@@ -211,29 +213,10 @@ class _ProfileViewScreenState extends State<ProfileViewScreen>
               Row(
                 children: [
                   // A Pod Button
-                  FilledButton.icon(
-                    onPressed: () {},
-                    style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xFF2D9CFC),
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      minimumSize: Size(0, 32.h),
-                    ),
-                    icon: Icon(Icons.video_call, size: 16.sp),
-                    label: Text("A Pod", style: TextStyle(fontSize: 12.sp)),
-                  ),
+                  SvgPicture.asset(SvgAssets.aPodIcon),
                   AppSpacing.w8,
                   // Chat Button
-                  OutlinedButton.icon(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF2D9CFC),
-                      side: const BorderSide(color: Color(0xFF2D9CFC)),
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      minimumSize: Size(0, 32.h),
-                    ),
-                    icon: Icon(Icons.chat_bubble_outline, size: 16.sp),
-                    label: Text("Chat", style: TextStyle(fontSize: 12.sp)),
-                  ),
+                  SvgPicture.asset(SvgAssets.chatTextIcon),
                 ],
               ),
             ],

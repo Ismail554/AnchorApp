@@ -33,6 +33,10 @@ class AppPadding {
   static EdgeInsets get r40 => EdgeInsets.all(40.r);
   static EdgeInsets get r48 => EdgeInsets.all(48.r);
 
+  // Alias for backward compatibility or convenience
+  static EdgeInsets get all16 => r16;
+  static EdgeInsets get all12 => r12;
+
   // Horizontal padding (responsive)
   static EdgeInsets get h4 => EdgeInsets.symmetric(horizontal: 4.r);
   static EdgeInsets get h8 => EdgeInsets.symmetric(horizontal: 8.r);

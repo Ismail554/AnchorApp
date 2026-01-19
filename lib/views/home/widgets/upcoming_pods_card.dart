@@ -4,6 +4,7 @@ import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/views/a_pods/apod_home_screen.dart';
 
 class UpcomingPodsCard extends StatelessWidget {
   const UpcomingPodsCard({super.key});
@@ -35,11 +36,21 @@ class UpcomingPodsCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(
-                "View All",
-                style: FontManager.bodySmall(
-                  fontSize: 12,
-                  color: AppColors.primaryColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ApodHomeScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  "View All",
+                  style: FontManager.bodySmall(
+                    fontSize: 12,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
             ],

@@ -61,4 +61,6 @@ class SvgAssets {
   static const String profileNav = "$svgPath/profile_nav.svg";
   static const String invite = "$svgPath/invite.svg";
   static const String chat = "$svgPath/chat.svg";
+  static const String aPodIcon = "$svgPath/a_pod_icon.svg";
+  static const String chatTextIcon = "$svgPath/chat_text_icon.svg";
 }

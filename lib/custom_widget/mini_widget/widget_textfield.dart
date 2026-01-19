@@ -10,7 +10,8 @@ class WidgetTextfield extends StatefulWidget {
   final bool isPassword;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
-  final double elevation; // 1. Added elevation parameter
+  final double elevation;
+  final VoidCallback? onSuffixTap;
 
   const WidgetTextfield({
     super.key,
@@ -21,7 +22,8 @@ class WidgetTextfield extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.validator,
     this.elevation = 8.0,
-    this.suffixIcon, // Added suffixIcon
+    this.suffixIcon,
+    this.onSuffixTap,
   });
 
   @override
@@ -83,10 +85,13 @@ class _WidgetTextfieldState extends State<WidgetTextfield> {
                   },
                 )
               : (widget.suffixIcon != null
-                    ? Icon(
-                        widget.suffixIcon,
-                        color: AppColors.grey,
-                        size: 20.sp,
+                    ? GestureDetector(
+                        onTap: widget.onSuffixTap, // Handle tap
+                        child: Icon(
+                          widget.suffixIcon,
+                          color: AppColors.grey,
+                          size: 20.sp,
+                        ),
                       )
                     : null),
         ),
