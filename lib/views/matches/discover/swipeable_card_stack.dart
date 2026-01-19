@@ -5,7 +5,8 @@ import 'package:wynante/models/your_connection_model.dart';
 import 'package:wynante/views/matches/discover/my_saved_screen.dart';
 import 'package:wynante/views/matches/discover/discover_card.dart';
 import 'package:wynante/views/matches/dislike_dialog.dart';
-import 'package:wynante/core/font_manager.dart';
+
+import 'package:wynante/core/app_colors.dart';
 
 class SwipeableCardStack extends StatefulWidget {
   final List<YourConnectionModel> candidates;
@@ -39,7 +40,22 @@ class _SwipeableCardStackState extends State<SwipeableCardStack>
 
   void _removeCard(bool liked) {
     if (liked) {
-      print("Liked ${_cards[_currentIndex].name}");
+      final name = _cards[_currentIndex].name;
+      print("Liked $name");
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("You have liked $name"),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: AppColors.primaryColor,
+          duration: const Duration(seconds: 2),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: const EdgeInsets.all(16),
+        ),
+      );
+
       _animateSlideOut(offset: const Offset(0, -1.5)); // Slide UP
     } else {
       print("Disliked ${_cards[_currentIndex].name}");
@@ -50,13 +66,16 @@ class _SwipeableCardStackState extends State<SwipeableCardStack>
 
   void _animateSlideOut({required Offset offset}) {
     _slideOutAnimation = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
     // Animation controller drives the slide out
     final _ = Tween<Offset>(begin: Offset.zero, end: offset).animate(
-      CurvedAnimation(parent: _slideOutAnimation!, curve: Curves.easeOut),
+      CurvedAnimation(
+        parent: _slideOutAnimation!,
+        curve: Curves.easeInOutCubic,
+      ),
     );
 
     _slideOutAnimation!.forward().then((_) {
