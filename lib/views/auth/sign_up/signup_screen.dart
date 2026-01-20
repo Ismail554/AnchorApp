@@ -5,11 +5,12 @@ import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/app_strings.dart';
 import 'package:wynante/core/font_manager.dart';
-import 'package:wynante/core/app_padding.dart';
+
 import 'package:wynante/custom_widget/mini_widget/linear_logo.dart';
 import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
 import 'package:wynante/views/auth/login/login_screen.dart';
 import 'package:wynante/views/auth/sign_up/verification_screen.dart';
+import 'package:wynante/custom_widget/mini_widget/social_login_buttons.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -97,35 +98,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 isPassword: true,
                 controller: _confirmPasswordController,
               ),
-              AppSpacing.h12,
-              // Remember Me Checkbox
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Checkbox(
-                      value: _rememberMe,
-                      onChanged: (value) {
-                        setState(() {
-                          _rememberMe = value ?? false;
-                        });
-                      },
-                      activeColor: AppColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.r),
-                      ),
-                    ),
-                    Text(
-                      AppStrings.rememberMe,
-                      style: FontManager.bodyMedium(
-                        fontSize: 14,
-                        color: AppColors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              AppSpacing.h24,
+              AppSpacing.h28,
+
               // Register Button
               SizedBox(
                 width: double.infinity,
@@ -151,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              AppSpacing.h24,
+              AppSpacing.h20,
               // Already have account? Login
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -187,7 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ],
               ),
-              AppSpacing.h32,
+              AppSpacing.h20,
               // Or sign up with separator
               Row(
                 children: [
@@ -235,103 +209,13 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               AppSpacing.h24,
               // Social Sign Up Buttons
-              Row(
-                children: [
-                  // Google Button
-                  Expanded(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        foregroundColor: AppColors.textPrimary,
-                        side: BorderSide(
-                          color: AppColors.grey.withOpacity(0.3),
-                          width: 1,
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppPadding.c12,
-                        ),
-                      ),
-                      onPressed: () {
-                        // TODO: Implement Google sign up
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Google Logo
-                          Container(
-                            width: 20.w,
-                            height: 20.h,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  const Color(0xFF4285F4), // Blue
-                                  const Color(0xFF34A853), // Green
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Center(
-                              child: Text(
-                                'G',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          AppSpacing.w8,
-                          Text(
-                            AppStrings.google,
-                            style: FontManager.bodyMedium(
-                              fontSize: 14,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  AppSpacing.w12,
-                  // Apple Button
-                  Expanded(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        foregroundColor: AppColors.textPrimary,
-                        side: BorderSide(
-                          color: AppColors.grey.withOpacity(0.3),
-                          width: 1,
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppPadding.c12,
-                        ),
-                      ),
-                      onPressed: () {
-                        // TODO: Implement Apple sign up
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.apple, size: 20.sp, color: AppColors.grey),
-                          AppSpacing.w8,
-                          Text(
-                            AppStrings.apple,
-                            style: FontManager.bodyMedium(
-                              fontSize: 14,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              SocialLoginButtons(
+                onGooglePressed: () {
+                  // TODO: Implement Google sign up
+                },
+                onApplePressed: () {
+                  // TODO: Implement Apple sign up
+                },
               ),
               AppSpacing.h32,
             ],

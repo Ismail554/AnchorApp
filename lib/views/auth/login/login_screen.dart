@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/assets_manager.dart';
@@ -12,6 +12,7 @@ import 'package:wynante/custom_widget/mini_widget/widget_textfield.dart';
 import 'package:wynante/views/auth/forgot_pass_screen.dart';
 import 'package:wynante/views/auth/sign_up/signup_screen.dart';
 import 'package:wynante/views/auth/profile_setup/profile_setup_screen.dart';
+import 'package:wynante/custom_widget/mini_widget/social_login_buttons.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -90,30 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // Remember Me Checkbox
-                  // Row(
-                  //   children: [
-                  //     Checkbox(
-                  //       value: _rememberMe,
-                  //       onChanged: (value) {
-                  //         setState(() {
-                  //           _rememberMe = value ?? false;
-                  //         });
-                  //       },
-                  //       activeColor: AppColors.primaryColor,
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(4.r),
-                  //       ),
-                  //     ),
-                  //     Text(
-                  //       AppStrings.rememberMe,
-                  //       style: FontManager.bodyMedium(
-                  //         fontSize: 14,
-                  //         color: AppColors.grey,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                   // Forgot Password Link
                   TextButton(
                     onPressed: () {
@@ -245,62 +222,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               AppSpacing.h24,
               // Social Login Buttons
-              Row(
-                children: [
-                  // Google Button
-                  Expanded(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: AppColors.grey, width: 1),
-                      ),
-                      onPressed: () {
-                        // TODO: Implement Google login
-                      },
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(SvgAssets.googleIcon),
-                          AppSpacing.w8,
-                          Text(
-                            AppStrings.google,
-                            style: FontManager.bodyMedium(
-                              fontSize: 14,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  AppSpacing.w12,
-                  // Apple Button
-                  Expanded(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: AppColors.grey, width: 1),
-                      ),
-                      onPressed: () {
-                        // TODO: Implement Apple login
-                      },
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.apple, size: 20.sp, color: AppColors.grey),
-                          AppSpacing.w8,
-                          Text(
-                            AppStrings.apple,
-                            style: FontManager.bodyMedium(
-                              fontSize: 14,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              // Social Login Buttons
+              SocialLoginButtons(
+                onGooglePressed: () {
+                  // TODO: Implement Google login
+                },
+                onApplePressed: () {
+                  // TODO: Implement Apple login
+                },
               ),
               AppSpacing.h32,
             ],
