@@ -5,6 +5,7 @@ import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
 import 'package:wynante/views/a_pods/received_view.dart';
+import 'package:wynante/views/a_pods/schedule_a_pod.dart';
 import 'package:wynante/views/a_pods/sent_view.dart';
 import 'package:wynante/views/a_pods/scheduled_view.dart';
 import 'package:wynante/views/a_pods/connections_view.dart';
@@ -63,7 +64,14 @@ class _ApodHomeScreenState extends State<ApodHomeScreen>
                   ],
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScheduleAPodScreen(),
+                      ),
+                    );
+                  },
                   icon: const Icon(Icons.add, size: 18, color: Colors.white),
                   label: Text(
                     "Schedule",

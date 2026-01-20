@@ -4,6 +4,7 @@ import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/views/check_ins/check_in_home_screen.dart';
 
 class CheckInsCard extends StatelessWidget {
   const CheckInsCard({super.key});
@@ -35,11 +36,21 @@ class CheckInsCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(
-                "View All",
-                style: FontManager.bodySmall(
-                  fontSize: 12,
-                  color: AppColors.primaryColor,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CheckInHomeScreen(),
+                    ),
+                  );
+                },
+                child: Text(
+                  "View All",
+                  style: FontManager.bodySmall(
+                    fontSize: 12,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
             ],

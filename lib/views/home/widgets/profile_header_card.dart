@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_padding.dart';
 import 'package:wynante/core/app_spacing.dart';
+import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/views/settings/subscription_plan_screen.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
   const ProfileHeaderCard({super.key});
@@ -22,19 +24,9 @@ class ProfileHeaderCard extends StatelessWidget {
           Row(
             children: [
               // Avatar
-              Container(
-                width: 60.w,
-                height: 60.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                      'https://i.pravatar.cc/150?img=11',
-                    ), // Dummy Image
-                    fit: BoxFit.cover,
-                  ),
-                  border: Border.all(color: AppColors.greyE8, width: 1),
-                ),
+              CircleAvatar(
+                radius: 25,
+                backgroundImage: AssetImage(ImageAssets.men1),
               ),
               AppSpacing.w12,
 
@@ -43,10 +35,13 @@ class ProfileHeaderCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("John Doe", style: FontManager.heading3(fontSize: 18)),
+                    Text(
+                      "MD Ismail",
+                      style: FontManager.titleText(fontSize: 18),
+                    ),
                     Text(
                       "Free Plan",
-                      style: FontManager.bodySmall(color: AppColors.grey),
+                      style: FontManager.heading4(color: AppColors.grey),
                     ),
                   ],
                 ),
@@ -67,15 +62,29 @@ class ProfileHeaderCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
-                child: Row(
-                  children: [
-                    Icon(Icons.auto_awesome, size: 16.sp, color: Colors.white),
-                    SizedBox(width: 4.w),
-                    Text(
-                      "Upgrade",
-                      style: FontManager.buttonText(fontSize: 14),
-                    ),
-                  ],
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SubscriptionPlanScreen(),
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.auto_awesome,
+                        size: 16.sp,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        "Upgrade",
+                        style: FontManager.buttonText(fontSize: 14),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

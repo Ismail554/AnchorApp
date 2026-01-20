@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/app_spacing.dart';
 import 'package:wynante/core/assets_manager.dart';
@@ -87,32 +88,32 @@ class _LoginScreenState extends State<LoginScreen> {
               AppSpacing.h12,
               // Remember me & Forgot Password Row
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   // Remember Me Checkbox
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _rememberMe,
-                        onChanged: (value) {
-                          setState(() {
-                            _rememberMe = value ?? false;
-                          });
-                        },
-                        activeColor: AppColors.primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.r),
-                        ),
-                      ),
-                      Text(
-                        AppStrings.rememberMe,
-                        style: FontManager.bodyMedium(
-                          fontSize: 14,
-                          color: AppColors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Checkbox(
+                  //       value: _rememberMe,
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           _rememberMe = value ?? false;
+                  //         });
+                  //       },
+                  //       activeColor: AppColors.primaryColor,
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(4.r),
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       AppStrings.rememberMe,
+                  //       style: FontManager.bodyMedium(
+                  //         fontSize: 14,
+                  //         color: AppColors.grey,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   // Forgot Password Link
                   TextButton(
                     onPressed: () {
@@ -259,6 +260,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SvgPicture.asset(SvgAssets.googleIcon),
+                          AppSpacing.w8,
                           Text(
                             AppStrings.google,
                             style: FontManager.bodyMedium(

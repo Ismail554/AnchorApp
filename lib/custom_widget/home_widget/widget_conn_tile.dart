@@ -100,7 +100,7 @@ class WidgetConnTile extends StatelessWidget {
                     connection.date,
                     style: FontManager.bodySmall(
                       color: AppColors.grey,
-                      fontSize: 10,
+                      fontSize: 12,
                     ),
                   ),
                   if (isChannel)

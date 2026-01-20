@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wynante/core/app_colors.dart';
 import 'package:wynante/core/assets_manager.dart';
 import 'package:wynante/core/font_manager.dart';
+import 'package:wynante/views/notification_screen.dart';
+import 'package:wynante/views/settings/settings_home_screen.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -32,7 +34,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         Stack(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificationScreen(),
+                  ),
+                );
+              },
               icon: Icon(
                 Icons.notifications_outlined,
                 color: AppColors.textSecondary,
@@ -55,7 +64,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         // Settings Icon
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SettingsHomeScreen(),
+              ),
+            );
+          },
           icon: Icon(
             Icons.settings_outlined,
             color: AppColors.textSecondary,

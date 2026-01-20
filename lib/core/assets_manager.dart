@@ -63,4 +63,5 @@ class SvgAssets {
   static const String chat = "$svgPath/chat.svg";
   static const String aPodIcon = "$svgPath/a_pod_icon.svg";
   static const String chatTextIcon = "$svgPath/chat_text_icon.svg";
+  static const String googleIcon = "$svgPath/google_icon.svg";
 }
